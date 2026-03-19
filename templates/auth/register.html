@@ -1,32 +1,62 @@
 {% extends "base.html" %}
-{% block title %}Registro de clientes{% endblock %}
+{% block title %}Crear cuenta{% endblock %}
 {% block content %}
-<section class="auth-layout">
-  <div class="auth-showcase">
-    <img src="{{ url_for('static', filename='img/auth-register.svg') }}" alt="Registro de clientes para invitaciones digitales">
-    <div class="auth-showcase-overlay">
-      <span class="section-eyebrow" style="color:white;background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.18);">Alta de clientes</span>
-      <h2>Crea tu cuenta y empieza con tu evento.</h2>
-      <p>Accede al panel, guarda borradores y solicita un servicio personalizado cuando lo necesites.</p>
+<section class="auth-page">
+  <div class="auth-card auth-visual">
+    <div class="auth-visual-media">
+      <img src="{{ url_for('static', filename='img/auth-register.svg') }}" alt="Registro de clientes para invitaciones digitales">
+    </div>
+    <div class="auth-card-body">
+      <span class="section-eyebrow">Registro</span>
+      <h1>Crea tu cuenta</h1>
+      <p>Regístrate para guardar tus avances, elegir un plan y gestionar tus pedidos desde el panel cliente.</p>
+      <form method="post" action="{{ url_for('auth.register') }}" class="auth-form" data-auth-validate="register" novalidate>
+        <div class="form-group">
+          <label for="full_name">Nombre completo</label>
+          <input type="text" id="full_name" name="full_name" placeholder="Nombre y apellido" maxlength="120" required>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tuemail@dominio.com" autocomplete="email" maxlength="255" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Teléfono / WhatsApp</label>
+            <input type="text" id="phone" name="phone" placeholder="+54 9 11 0000 0000" maxlength="40">
+          </div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group form-group-password">
+            <label for="password">Contraseña</label>
+            <div class="password-wrap">
+              <input type="password" id="password" name="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" minlength="8" required>
+              <button class="password-toggle" type="button" data-toggle-password="#password">Ver</button>
+            </div>
+          </div>
+          <div class="form-group form-group-password">
+            <label for="confirm_password">Confirmar contraseña</label>
+            <div class="password-wrap">
+              <input type="password" id="confirm_password" name="confirm_password" placeholder="Repite la contraseña" autocomplete="new-password" minlength="8" required>
+              <button class="password-toggle" type="button" data-toggle-password="#confirm_password">Ver</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="checkbox-inline checkbox-block">
+            <input type="checkbox" name="accept_terms" value="1" required>
+            <span>Acepto los términos y condiciones y la política de privacidad.</span>
+          </label>
+        </div>
+        <div class="form-inline-error" data-form-error></div>
+        <button type="submit" class="button button-full">Crear cuenta</button>
+      </form>
+      <div class="auth-links-stack">
+        <a href="{{ url_for('auth.login') }}" class="button-outline button-full">Ya tengo cuenta</a>
+      </div>
     </div>
   </div>
-
-  <div class="auth-panel">
-    <span class="section-eyebrow">Registro</span>
-    <h1>Activa tu cuenta</h1>
-    <p>Con esta base ya puedes mostrar un onboarding más prolijo y coherente con la propuesta comercial.</p>
-    <form class="form-grid" method="post">
-      <label class="full">Email
-        <input type="email" name="email" required>
-      </label>
-      <label class="full">Contraseña
-        <input type="password" name="password" required>
-      </label>
-      <div class="full actions-row">
-        <button class="button" type="submit">Crear cuenta</button>
-        <a class="button-outline" href="{{ url_for('auth.login') }}">Ya tengo cuenta</a>
-      </div>
-    </form>
-  </div>
 </section>
+{% endblock %}
+{% block page_scripts %}
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 {% endblock %}

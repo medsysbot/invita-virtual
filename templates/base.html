@@ -31,6 +31,7 @@
           <a class="nav-ghost" href="{{ url_for('auth.logout') }}">Salir</a>
         {% else %}
           <a class="nav-link" href="{{ url_for('auth.login') }}">Acceso clientes</a>
+          <a class="nav-link" href="{{ url_for('auth.admin_login') }}">Acceso admin</a>
           <a class="nav-cta" href="{{ url_for('auth.register') }}">Empezar</a>
         {% endif %}
       </nav>
@@ -60,5 +61,6 @@
   </footer>
 </div>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block page_scripts %}{% endblock %}
 </body>
 </html>

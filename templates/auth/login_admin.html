@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Acceso administración{% endblock %}
+{% block content %}
+<section class="auth-page auth-page-admin">
+  <div class="auth-card auth-card-admin-only">
+    <div class="auth-card-body">
+      <span class="section-eyebrow">Acceso administración</span>
+      <h1>Panel administrativo</h1>
+      <p>Ingreso exclusivo para usuarios con privilegios de administración.</p>
+      <form method="post" action="{{ url_for('auth.admin_login') }}" class="auth-form" data-auth-validate="admin-login" novalidate>
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="admin@dominio.com" autocomplete="email" required>
+        </div>
+        <div class="form-group form-group-password">
+          <label for="password">Contraseña</label>
+          <div class="password-wrap">
+            <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" minlength="8" required>
+            <button class="password-toggle" type="button" data-toggle-password="#password">Ver</button>
+          </div>
+        </div>
+        <div class="form-inline-error" data-form-error></div>
+        <button type="submit" class="button button-full">Ingresar como administrador</button>
+      </form>
+      <div class="auth-links-stack">
+        <a href="{{ url_for('auth.login') }}" class="text-link text-link-center">Volver al acceso de clientes</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block page_scripts %}
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+{% endblock %}

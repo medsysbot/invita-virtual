@@ -1,37 +1,45 @@
 {% extends "base.html" %}
-{% block title %}Acceso clientes{% endblock %}
+{% block title %}Ingresar{% endblock %}
 {% block content %}
-<section class="auth-layout">
-  <div class="auth-showcase">
-    <img src="{{ url_for('static', filename='img/auth-login.svg') }}" alt="Acceso de clientes a invitaciones digitales">
-    <div class="auth-showcase-overlay">
-      <span class="section-eyebrow" style="color:white;background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.18);">Panel cliente</span>
-      <h2>Entrá para crear o gestionar tu invitación.</h2>
-      <p>Elegí un plan, edita tu tarjeta o solicita un desarrollo totalmente personalizado.</p>
-      <div class="kpis">
-        <div class="kpi-box"><strong>DIY</strong><span>Editor básico</span></div>
-        <div class="kpi-box"><strong>Pro</strong><span>Opciones avanzadas</span></div>
-        <div class="kpi-box"><strong>Tips</strong><span>Contenido útil</span></div>
+<section class="auth-page">
+  <div class="auth-card auth-visual">
+    <div class="auth-visual-media">
+      <img src="{{ url_for('static', filename='img/auth-login.svg') }}" alt="Acceso de clientes a invitaciones digitales">
+    </div>
+    <div class="auth-card-body">
+      <span class="section-eyebrow">Acceso clientes</span>
+      <h1>Bienvenido de nuevo</h1>
+      <p>Accede a tu cuenta para gestionar tus invitaciones, revisar pedidos y continuar tu evento.</p>
+      <form method="post" action="{{ url_for('auth.login') }}" class="auth-form" data-auth-validate="login" novalidate>
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="tuemail@dominio.com" autocomplete="email" required>
+        </div>
+        <div class="form-group form-group-password">
+          <label for="password">Contraseña</label>
+          <div class="password-wrap">
+            <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" required minlength="8">
+            <button class="password-toggle" type="button" data-toggle-password="#password">Ver</button>
+          </div>
+        </div>
+        <div class="form-row between">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="remember_me" value="1">
+            <span>Recordarme</span>
+          </label>
+          <a href="{{ url_for('auth.forgot_password') }}" class="text-link">Olvidé mi contraseña</a>
+        </div>
+        <div class="form-inline-error" data-form-error></div>
+        <button type="submit" class="button button-full">Ingresar</button>
+      </form>
+      <div class="auth-links-stack">
+        <a href="{{ url_for('auth.register') }}" class="button-outline button-full">Crear cuenta</a>
+        <a href="{{ url_for('auth.admin_login') }}" class="text-link text-link-center">Ingreso administrativo</a>
       </div>
     </div>
   </div>
-
-  <div class="auth-panel">
-    <span class="section-eyebrow">Acceso clientes</span>
-    <h1>Bienvenido de nuevo</h1>
-    <p>Ingresa con tu cuenta para continuar con tus tarjetas, solicitudes y pedidos.</p>
-    <form class="form-grid" method="post">
-      <label class="full">Email
-        <input type="email" name="email" required>
-      </label>
-      <label class="full">Contraseña
-        <input type="password" name="password" required>
-      </label>
-      <div class="full actions-row">
-        <button class="button" type="submit">Entrar</button>
-        <a class="button-outline" href="{{ url_for('auth.register') }}">Crear cuenta</a>
-      </div>
-    </form>
-  </div>
 </section>
+{% endblock %}
+{% block page_scripts %}
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 {% endblock %}
