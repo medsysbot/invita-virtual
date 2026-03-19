@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from extensions import db
@@ -7,11 +7,18 @@ ROLE_CLIENT = "client"
 ROLE_ADMIN = "admin"
 
 class User(db.Model, UserMixin):
+    __tablename__ = "user"
+
     id = db.Column(db.Integer, primary_key=True)
+    full_name = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
+    phone = db.Column(db.String(40), nullable=True)
     password_hash = db.Column(db.String(255), nullable=False)
     role = db.Column(db.String(32), default=ROLE_CLIENT, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    is_active = db.Column(db.Boolean, default=True, nullable=False)
+    accepted_terms = db.Column(db.Boolean, default=False, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
     last_login = db.Column(db.DateTime)
 
     def set_password(self, password):
@@ -19,6 +26,32 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    @property
+    def is_active_user(self):
+        return bool(self.is_active)
+
+class PasswordResetToken(db.Model):
+    __tablename__ = "password_reset_token"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False, index=True)
+    token = db.Column(db.String(255), unique=True, nullable=False, index=True)
+    expires_at = db.Column(db.DateTime, nullable=False)
+    used_at = db.Column(db.DateTime, nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+
+    @classmethod
+    def issue(cls, user_id, token, minutes=60):
+        return cls(
+            user_id=user_id,
+            token=token,
+            expires_at=datetime.utcnow() + timedelta(minutes=minutes)
+        )
+
+    @property
+    def is_valid(self):
+        return self.used_at is None and self.expires_at >= datetime.utcnow()
 
 class Template(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,10 +64,10 @@ class Plan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     description = db.Column(db.Text)
-    price = db.Column(db.Integer, default=0)  # centavos/unidad mínima
+    price = db.Column(db.Integer, default=0)
     currency = db.Column(db.String(8), default="ARS")
     is_active = db.Column(db.Boolean, default=True)
-    features_json = db.Column(db.Text)  # JSON en string
+    features_json = db.Column(db.Text)
 
 class Invitation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,7 +78,7 @@ class Invitation(db.Model):
     date_time = db.Column(db.String(64))
     venue = db.Column(db.String(255))
     body_text = db.Column(db.Text)
-    status = db.Column(db.String(32), default="draft")  # draft, pending_payment, paid
+    status = db.Column(db.String(32), default="draft")
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -55,7 +88,7 @@ class Order(db.Model):
     invitation_id = db.Column(db.Integer, db.ForeignKey('invitation.id'))
     amount = db.Column(db.Integer, default=0)
     currency = db.Column(db.String(8), default="ARS")
-    status = db.Column(db.String(32), default="pending")  # pending, paid, failed, canceled
+    status = db.Column(db.String(32), default="pending")
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -75,7 +108,6 @@ class Testimonial(db.Model):
     is_approved = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-# Tips
 class TipCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     parent_id = db.Column(db.Integer, db.ForeignKey('tip_category.id'), nullable=True)
@@ -94,7 +126,7 @@ class TipArticle(db.Model):
     summary = db.Column(db.Text)
     body_richtext = db.Column(db.Text)
     hero_asset_url = db.Column(db.String(512))
-    status = db.Column(db.String(32), default="draft")  # draft, in_review, published, archived
+    status = db.Column(db.String(32), default="draft")
     submitted_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     submitted_at = db.Column(db.DateTime, nullable=True)
     reviewed_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
@@ -125,6 +157,6 @@ class CustomRequest(db.Model):
     style_refs_text = db.Column(db.Text)
     budget_range = db.Column(db.String(64))
     attachments_count = db.Column(db.Integer, default=0)
-    status = db.Column(db.String(32), default="new")  # new, in_review, quoted, approved, canceled
+    status = db.Column(db.String(32), default="new")
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

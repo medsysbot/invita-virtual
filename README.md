@@ -37,3 +37,12 @@ flask --app app run --debug
   ```sql
   update "user" set role = 'admin' where email = 'SU_EMAIL';
   ```
+
+
+## Módulo Auth final
+- Login cliente: /auth/login
+- Registro cliente: /auth/register
+- Login admin: /auth/admin-login
+- Recuperación: /auth/forgot-password
+- Reset: /auth/reset-password/<token>
+- SQL único Supabase: `supabase_auth.sql`
