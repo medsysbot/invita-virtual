@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ cat.name }} · Tips{% endblock %}
+{% block content %}
+<section class="page-hero glass-card listing-hero">
+  <div>
+    <span class="section-eyebrow">Categoría</span>
+    <h1>{{ cat.name }}</h1>
+    <p>Listado visual de artículos publicados. Ideal para una demo clara de navegación y lectura.</p>
+    <div class="inline-meta">
+      <span class="badge">Búsqueda interna</span>
+      <span class="badge">Contenido revisado</span>
+      <span class="badge">CTA comercial</span>
+    </div>
+  </div>
+  <div class="card-media">
+    <img src="{{ url_for('static', filename='img/category-cover.svg') }}" alt="Categoría de tips">
+  </div>
+</section>
+
+{% if articles %}
+  <div class="articles-grid">
+    {% for a in articles %}
+      <article class="article-card">
+        <div class="card-media">
+          <img src="{{ url_for('static', filename='img/article-card.svg') }}" alt="Tarjeta del artículo">
+        </div>
+        <span class="mini-tag">{{ cat.name }}</span>
+        <h3>{{ a.title }}</h3>
+        <p>{{ a.summary or 'Contenido editorial con revisión, pensado para informar y convertir.' }}</p>
+        <a class="button-ghost" href="{{ url_for('public.tip_view', slug=a.slug) }}">Ver detalle</a>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-state">
+    <h3>Sin artículos publicados por el momento</h3>
+    <p>Puedes cargar artículos desde Admin y, una vez publicados, aparecerán aquí con este mismo diseño.</p>
+  </div>
+{% endif %}
+{% endblock %}

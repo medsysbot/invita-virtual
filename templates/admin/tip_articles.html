@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Artículos Tips{% endblock %}
+{% block content %}
+<section class="page-hero glass-card">
+  <span class="section-eyebrow">Admin · Tips</span>
+  <h1>Artículos</h1>
+  <p>Flujo editorial con borrador, revisión, publicación y archivo.</p>
+  <div class="inline-actions">
+    <a class="button" href="{{ url_for('admin.tip_article_new') }}">Nuevo artículo</a>
+  </div>
+</section>
+
+<form class="filter-panel glass-card" method="get">
+  <label>Estado
+    <select name="status" onchange="this.form.submit()">
+      <option value="">(Todos)</option>
+      {% for s in ["draft","in_review","published","archived"] %}
+        <option value="{{ s }}" {% if request.args.get('status')==s %}selected{% endif %}>{{ s }}</option>
+      {% endfor %}
+    </select>
+  </label>
+</form>
+
+<div class="table-card table-wrap">
+  <table>
+    <tr><th>ID</th><th>Título</th><th>Categoría</th><th>Estado</th><th>Actualizado</th><th>Acciones</th></tr>
+    {% for a in items %}
+    <tr>
+      <td>#{{ a.id }}</td>
+      <td>{{ a.title }}</td>
+      <td>{{ a.category_id }}</td>
+      <td><span class="status-badge {% if a.status == 'draft' %}draft{% elif a.status == 'in_review' %}review{% elif a.status == 'archived' %}archived{% endif %}">{{ a.status }}</span></td>
+      <td>{{ a.updated_at }}</td>
+      <td class="actions-row">
+        <a class="button-ghost" href="{{ url_for('admin.tip_article_edit', art_id=a.id) }}">Editar</a>
+        <form method="post" action="{{ url_for('admin.tip_article_transition', art_id=a.id) }}">
+          {% if a.status == 'draft' %}
+            <input type="hidden" name="action" value="submit_for_review">
+            <button class="button-outline">Enviar a revisión</button>
+          {% elif a.status == 'in_review' %}
+            <input type="hidden" name="action" value="approve_and_publish">
+            <button class="button">Publicar</button>
+          {% elif a.status == 'published' %}
+            <input type="hidden" name="action" value="archive">
+            <button class="button-outline">Archivar</button>
+          {% elif a.status == 'archived' %}
+            <input type="hidden" name="action" value="restore_to_draft">
+            <button class="button-outline">Restaurar a borrador</button>
+          {% endif %}
+        </form>
+        {% if a.status == 'in_review' %}
+        <form method="post" action="{{ url_for('admin.tip_article_transition', art_id=a.id) }}">
+          <input type="hidden" name="action" value="request_changes">
+          <input type="hidden" name="review_notes" value="Ajustar contenido.">
+          <button class="button-outline">Solicitar cambios</button>
+        </form>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

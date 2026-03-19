@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Registro de clientes{% endblock %}
+{% block content %}
+<section class="auth-layout">
+  <div class="auth-showcase">
+    <img src="{{ url_for('static', filename='img/auth-register.svg') }}" alt="Registro de clientes para invitaciones digitales">
+    <div class="auth-showcase-overlay">
+      <span class="section-eyebrow" style="color:white;background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.18);">Alta de clientes</span>
+      <h2>Crea tu cuenta y empieza con tu evento.</h2>
+      <p>Accede al panel, guarda borradores y solicita un servicio personalizado cuando lo necesites.</p>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <span class="section-eyebrow">Registro</span>
+    <h1>Activa tu cuenta</h1>
+    <p>Con esta base ya puedes mostrar un onboarding más prolijo y coherente con la propuesta comercial.</p>
+    <form class="form-grid" method="post">
+      <label class="full">Email
+        <input type="email" name="email" required>
+      </label>
+      <label class="full">Contraseña
+        <input type="password" name="password" required>
+      </label>
+      <div class="full actions-row">
+        <button class="button" type="submit">Crear cuenta</button>
+        <a class="button-outline" href="{{ url_for('auth.login') }}">Ya tengo cuenta</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

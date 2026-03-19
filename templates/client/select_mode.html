@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Elegir modo{% endblock %}
+{% block content %}
+<section class="page-hero glass-card">
+  <span class="section-eyebrow">Nueva tarjeta</span>
+  <h1>¿Cómo quieres crear tu invitación?</h1>
+  <p>Selecciona el modo de trabajo y continúa con el flujo adecuado.</p>
+</section>
+
+<form method="post" class="plan-grid">
+  <article class="selection-card">
+    <div class="card-media"><img src="{{ url_for('static', filename='img/mode-diy.svg') }}" alt="Modo DIY"></div>
+    <span class="mini-tag">DIY</span>
+    <h3>La hago yo</h3>
+    <p>Ideal para clientes que quieren elegir un plan y completar su invitación directamente.</p>
+    <button class="button" type="submit" name="mode" value="DIY">Elegir DIY</button>
+  </article>
+  <article class="selection-card">
+    <div class="card-media"><img src="{{ url_for('static', filename='img/mode-service.svg') }}" alt="Servicio completo"></div>
+    <span class="mini-tag">Servicio completo</span>
+    <h3>La hacen por mí</h3>
+    <p>Completa un brief y el equipo administra el trabajo desde el panel interno.</p>
+    <button class="button" type="submit" name="mode" value="SERVICIO">Solicitar servicio</button>
+  </article>
+</form>
+{% endblock %}

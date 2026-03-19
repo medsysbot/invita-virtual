@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+{% block title %}Invita Virtual · Tarjetas digitales para eventos{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Diseño digital + gestión del pedido + contenido útil</span>
+    <h1>Tarjetas virtuales que se ven premium desde la primera pantalla.</h1>
+    <p>
+      Muestra plantillas, trabajos terminados, opiniones reales y una sección de Tips con contenido útil para casamientos y cumpleaños.
+      Además, el cliente puede elegir entre hacerlo por su cuenta o solicitar un servicio totalmente personalizado.
+    </p>
+    <div class="hero-actions">
+      <a class="button" href="{{ url_for('client.crear') }}">Crear invitación</a>
+      <a class="button-outline" href="#muestrario">Ver muestrario</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <strong>2 modos</strong>
+        <span>DIY o servicio completo</span>
+      </div>
+      <div class="stat-card">
+        <strong>Tips</strong>
+        <span>Organización por tipo de evento</span>
+      </div>
+      <div class="stat-card">
+        <strong>Admin</strong>
+        <span>Control de clientes, pedidos y revisión</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-media">
+    <img src="{{ url_for('static', filename='img/hero-main.svg') }}" alt="Vista premium de invitaciones digitales">
+    <div class="floating-card glass-card">
+      <strong>Todo el flujo en un solo lugar</strong>
+      <p>Cliente, invitación, plan, tips y administración listos para una demo comercial.</p>
+    </div>
+  </div>
+</section>
+
+<section id="muestrario" class="section-block">
+  <div class="section-head">
+    <div>
+      <span class="section-eyebrow">Muestrario</span>
+      <h2>Modelos visuales para vender mejor</h2>
+      <p>Un frente público más atractivo para que el cliente perciba valor antes de entrar al panel.</p>
+    </div>
+    <a class="button-ghost" href="{{ url_for('auth.register') }}">Probar ahora</a>
+  </div>
+  <div class="gallery-grid">
+    <article class="media-card">
+      <div class="card-media"><img src="{{ url_for('static', filename='img/showcase-wedding.svg') }}" alt="Tarjeta de casamiento elegante"></div>
+      <span class="mini-tag">Casamientos</span>
+      <h3>Estilo editorial elegante</h3>
+      <p>Composición sobria, fotografía protagonista y CTA claros para confirmar asistencia.</p>
+    </article>
+    <article class="media-card">
+      <div class="card-media"><img src="{{ url_for('static', filename='img/showcase-fifteen.svg') }}" alt="Tarjeta de 15 años brillante"></div>
+      <span class="mini-tag">15 años</span>
+      <h3>Visual premium para eventos sociales</h3>
+      <p>Paleta luminosa, acentos brillantes y bloques listos para cronograma, ubicación y regalos.</p>
+    </article>
+    <article class="media-card">
+      <div class="card-media"><img src="{{ url_for('static', filename='img/showcase-birthday.svg') }}" alt="Tarjeta de cumpleaños moderna"></div>
+      <span class="mini-tag">Cumpleaños</span>
+      <h3>Formatos flexibles para niños y adultos</h3>
+      <p>Diseños coloridos y modernos, listos para adaptarse a planes básicos o completos.</p>
+    </article>
+  </div>
+</section>
+
+<section id="trabajos" class="section-block">
+  <div class="section-head">
+    <div>
+      <span class="section-eyebrow">Trabajos realizados</span>
+      <h2>Una galería pensada para cerrar ventas</h2>
+      <p>Este bloque ya simula una web comercial real, aunque todavía sea una base editable.</p>
+    </div>
+  </div>
+  <div class="grid-3">
+    <article class="tip-card">
+      <div class="card-media"><img src="{{ url_for('static', filename='img/project-01.svg') }}" alt="Proyecto de boda romántica"></div>
+      <h3>Boda romántica</h3>
+      <p>Micrositio con cuenta regresiva, galería y botón de confirmación.</p>
+      <ul class="feature-list">
+        <li>Diseño mobile first</li>
+        <li>Mapa y horarios del evento</li>
+        <li>Enlace compartible por WhatsApp</li>
+      </ul>
+    </article>
+    <article class="tip-card">
+      <div class="card-media"><img src="{{ url_for('static', filename='img/project-02.svg') }}" alt="Proyecto cumpleaños de 15"></div>
+      <h3>15 años glam</h3>
+      <p>Landing visual con paleta personalizada, música y sección de dress code.</p>
+      <ul class="feature-list">
+        <li>Historia visual del evento</li>
+        <li>CTA de regalos y RSVP</li>
+        <li>Diseño adaptable por plan</li>
+      </ul>
+    </article>
+    <article class="tip-card">
+      <div class="card-media"><img src="{{ url_for('static', filename='img/project-03.svg') }}" alt="Proyecto cumpleaños familiar"></div>
+      <h3>Fiesta familiar</h3>
+      <p>Versión práctica para eventos casuales, con foco en rapidez y claridad.</p>
+      <ul class="feature-list">
+        <li>Confirmación rápida</li>
+        <li>Datos esenciales visibles</li>
+        <li>Presentación limpia y moderna</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="section-head">
+    <div>
+      <span class="section-eyebrow">Cómo funciona</span>
+      <h2>Dos caminos claros para el cliente final</h2>
+    </div>
+  </div>
+  <div class="grid-4">
+    <article class="tip-card">
+      <span class="badge">Paso 1</span>
+      <h3>Explora</h3>
+      <p>El usuario recorre el catálogo, revisa trabajos y lee tips antes de decidir.</p>
+    </article>
+    <article class="tip-card">
+      <span class="badge">Paso 2</span>
+      <h3>Elige modo</h3>
+      <p>DIY para hacerlo solo o servicio completo para delegar toda la producción.</p>
+    </article>
+    <article class="tip-card">
+      <span class="badge">Paso 3</span>
+      <h3>Gestiona plan</h3>
+      <p>Selecciona opciones, completa datos y deja lista la invitación o la solicitud.</p>
+    </article>
+    <article class="tip-card">
+      <span class="badge">Paso 4</span>
+      <h3>Administra</h3>
+      <p>Desde el panel admin se revisan tips, clientes, solicitudes y pedidos.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="section-head">
+    <div>
+      <span class="section-eyebrow">Tips</span>
+      <h2>Contenido útil que da confianza y posiciona la marca</h2>
+      <p>Si todavía no hay artículos publicados, esta base ya muestra la estructura correcta para presentarla.</p>
+    </div>
+    <a class="button-outline" href="{{ url_for('public.tips_index') }}">Entrar a Tips</a>
+  </div>
+  <div class="tips-grid">
+    <article class="tip-card">
+      <div class="card-media"><img src="{{ url_for('static', filename='img/tips-wedding.svg') }}" alt="Tips de casamientos"></div>
+      <span class="mini-tag">Casamientos</span>
+      <h3>Checklists, proveedores y protocolo</h3>
+      <p>Guías editoriales listas para publicar con revisión previa antes de mostrarse al público.</p>
+    </article>
+    <article class="tip-card">
+      <div class="card-media"><img src="{{ url_for('static', filename='img/tips-fifteen.svg') }}" alt="Tips para quince años"></div>
+      <span class="mini-tag">15 años</span>
+      <h3>Ambientación, cronograma y presupuesto</h3>
+      <p>Subcategorías preparadas para organizar contenido segmentado y buscable.</p>
+    </article>
+    <article class="tip-card">
+      <div class="card-media"><img src="{{ url_for('static', filename='img/tips-birthday.svg') }}" alt="Tips para cumpleaños"></div>
+      <span class="mini-tag">Cumpleaños</span>
+      <h3>Niños, adultos y tercera edad</h3>
+      <p>Una biblioteca útil dentro de la misma plataforma, enfocada en captar leads y aportar valor.</p>
+    </article>
+  </div>
+</section>
+
+<section id="opiniones" class="section-block">
+  <div class="section-head">
+    <div>
+      <span class="section-eyebrow">Opiniones</span>
+      <h2>El cierre visual que necesita una demo comercial</h2>
+    </div>
+  </div>
+  <div class="grid-3">
+    <article class="testimonial glass-card">
+      <blockquote>“Ahora sí se ve como un producto que podemos enseñar. La home transmite valor y orden desde el primer scroll.”</blockquote>
+      <div class="testimonial-footer">
+        <img src="{{ url_for('static', filename='img/avatar-01.svg') }}" alt="Cliente 1">
+        <div>
+          <strong>Camila R.</strong>
+          <div class="meta">Evento social premium</div>
+        </div>
+      </div>
+    </article>
+    <article class="testimonial glass-card">
+      <blockquote>“Me gustó que no sea solo un panel técnico: ya parece una web real con muestrario, trabajos y tips.”</blockquote>
+      <div class="testimonial-footer">
+        <img src="{{ url_for('static', filename='img/avatar-02.svg') }}" alt="Cliente 2">
+        <div>
+          <strong>Mariano P.</strong>
+          <div class="meta">Prueba comercial</div>
+        </div>
+      </div>
+    </article>
+    <article class="testimonial glass-card">
+      <blockquote>“La estructura permite seguir ajustando sin rehacer todo. Ya tenemos una base mostrable para avanzar.”</blockquote>
+      <div class="testimonial-footer">
+        <img src="{{ url_for('static', filename='img/avatar-03.svg') }}" alt="Cliente 3">
+        <div>
+          <strong>Lucía S.</strong>
+          <div class="meta">Diseño de invitaciones</div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section-block glass-card" style="padding: 32px;">
+  <div class="section-head" style="margin-bottom: 0;">
+    <div>
+      <span class="section-eyebrow">Siguiente paso</span>
+      <h2>Base visual lista para seguir afinando</h2>
+      <p>Esta versión ya sirve para mostrar concepto y flujo. Sobre ella podemos ajustar colores, copy, imágenes reales, pricing y pagos.</p>
+    </div>
+    <div class="inline-actions">
+      <a class="button" href="{{ url_for('auth.register') }}">Crear cuenta</a>
+      <a class="button-outline" href="{{ url_for('auth.login') }}">Entrar al panel</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Panel admin{% endblock %}
+{% block content %}
+<section class="dashboard-head page-hero glass-card">
+  <span class="section-eyebrow">Panel admin</span>
+  <h1>Centro de control</h1>
+  <p>Resumen visual del backoffice para clientes, tips, planes y solicitudes personalizadas.</p>
+</section>
+
+<section class="metrics-grid section-block">
+  <article class="metric-card panel-card"><span class="mini-tag">Usuarios</span><h3>{{ users_count }}</h3><p>Cuentas registradas</p></article>
+  <article class="metric-card panel-card"><span class="mini-tag">Invitaciones</span><h3>{{ inv_count }}</h3><p>Tarjetas creadas</p></article>
+  <article class="metric-card panel-card"><span class="mini-tag">Pedidos</span><h3>{{ orders_count }}</h3><p>Órdenes generadas</p></article>
+  <article class="metric-card panel-card"><span class="mini-tag">Solicitudes</span><h3>{{ cr_count }}</h3><p>Servicio completo</p></article>
+</section>
+
+<section class="grid-4">
+  <a class="panel-card" href="{{ url_for('admin.custom_requests') }}" style="text-decoration:none;">
+    <h3>Solicitudes</h3>
+    <p>Gestiona briefs y seguimiento del servicio completo.</p>
+  </a>
+  <a class="panel-card" href="{{ url_for('admin.plans') }}" style="text-decoration:none;">
+    <h3>Planes</h3>
+    <p>Precios, activación y límites por modalidad.</p>
+  </a>
+  <a class="panel-card" href="{{ url_for('admin.tip_categories') }}" style="text-decoration:none;">
+    <h3>Categorías Tips</h3>
+    <p>Taxonomía pública del contenido editorial.</p>
+  </a>
+  <a class="panel-card" href="{{ url_for('admin.tip_articles') }}" style="text-decoration:none;">
+    <h3>Artículos Tips</h3>
+    <p>Borrador, revisión, publicación y archivo.</p>
+  </a>
+</section>
+{% endblock %}

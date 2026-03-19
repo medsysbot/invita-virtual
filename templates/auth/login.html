@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Acceso clientes{% endblock %}
+{% block content %}
+<section class="auth-layout">
+  <div class="auth-showcase">
+    <img src="{{ url_for('static', filename='img/auth-login.svg') }}" alt="Acceso de clientes a invitaciones digitales">
+    <div class="auth-showcase-overlay">
+      <span class="section-eyebrow" style="color:white;background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.18);">Panel cliente</span>
+      <h2>Entrá para crear o gestionar tu invitación.</h2>
+      <p>Elegí un plan, edita tu tarjeta o solicita un desarrollo totalmente personalizado.</p>
+      <div class="kpis">
+        <div class="kpi-box"><strong>DIY</strong><span>Editor básico</span></div>
+        <div class="kpi-box"><strong>Pro</strong><span>Opciones avanzadas</span></div>
+        <div class="kpi-box"><strong>Tips</strong><span>Contenido útil</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <span class="section-eyebrow">Acceso clientes</span>
+    <h1>Bienvenido de nuevo</h1>
+    <p>Ingresa con tu cuenta para continuar con tus tarjetas, solicitudes y pedidos.</p>
+    <form class="form-grid" method="post">
+      <label class="full">Email
+        <input type="email" name="email" required>
+      </label>
+      <label class="full">Contraseña
+        <input type="password" name="password" required>
+      </label>
+      <div class="full actions-row">
+        <button class="button" type="submit">Entrar</button>
+        <a class="button-outline" href="{{ url_for('auth.register') }}">Crear cuenta</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

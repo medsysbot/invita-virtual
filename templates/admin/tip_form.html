@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Editor de tips{% endblock %}
+{% block content %}
+<section class="dashboard-grid">
+  <div class="panel-card">
+    <span class="section-eyebrow">Editor Tips</span>
+    <h1>{{ "Nuevo artículo" if not art else "Editar artículo #" ~ art.id }}</h1>
+    <p>Formulario visual mejorado, manteniendo la lógica actual.</p>
+    <form class="form-grid" method="post">
+      <label>Categoría
+        <select name="category_id" required>
+          {% for c in cats %}
+            <option value="{{ c.id }}" {% if art and art.category_id==c.id %}selected{% endif %}>{{ c.name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Slug
+        <input name="slug" value="{{ art.slug if art else '' }}" required>
+      </label>
+      <label class="full">Título
+        <input name="title" value="{{ art.title if art else '' }}" required>
+      </label>
+      <label class="full">Resumen
+        <textarea name="summary">{{ art.summary if art else '' }}</textarea>
+      </label>
+      <label class="full">Cuerpo (HTML simple permitido)
+        <textarea name="body_richtext">{{ art.body_richtext if art else '' }}</textarea>
+      </label>
+      <div class="full actions-row">
+        <button class="button" type="submit">Guardar</button>
+      </div>
+    </form>
+  </div>
+
+  <aside class="panel-card">
+    <div class="card-media"><img src="{{ url_for('static', filename='img/editor-preview.svg') }}" alt="Vista del editor"></div>
+    <span class="mini-tag">Flujo editorial</span>
+    <h3>Revisión incluida</h3>
+    <p>La interfaz ya comunica mejor que el contenido pasa por control antes de publicarse.</p>
+  </aside>
+</section>
+{% endblock %}

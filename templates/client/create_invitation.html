@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Editar invitación{% endblock %}
+{% block content %}
+<section class="dashboard-grid">
+  <div class="panel-card">
+    <span class="section-eyebrow">Editor básico</span>
+    <h1>Invitación #{{ inv.id }}</h1>
+    <p>Base funcional con mejor presencia visual para mostrar el flujo al cliente.</p>
+    <form class="form-grid" method="post">
+      <label>Título
+        <input type="text" name="title" value="{{ inv.title or '' }}">
+      </label>
+      <label>Fecha / hora
+        <input type="text" name="date_time" value="{{ inv.date_time or '' }}" placeholder="2026-01-15 20:00">
+      </label>
+      <label class="full">Lugar
+        <input type="text" name="venue" value="{{ inv.venue or '' }}">
+      </label>
+      <label class="full">Contenido principal
+        <textarea name="body_text">{{ inv.body_text or '' }}</textarea>
+      </label>
+      <label class="full">Plantilla
+        <select name="template_id">
+          <option value="">-- Sin plantilla --</option>
+          {% for t in templates %}
+            <option value="{{ t.id }}" {% if inv.template_id == t.id %}selected{% endif %}>{{ t.name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <div class="full actions-row">
+        <button class="button" type="submit">Guardar borrador</button>
+      </div>
+    </form>
+  </div>
+
+  <aside class="panel-card">
+    <div class="card-media"><img src="{{ url_for('static', filename='img/invitation-preview.svg') }}" alt="Vista previa de invitación"></div>
+    <span class="mini-tag">Vista demo</span>
+    <h3>Presentación más vendible</h3>
+    <p>Este bloque funciona como preview visual para que la pantalla no se vea técnica ni vacía.</p>
+  </aside>
+</section>
+{% endblock %}

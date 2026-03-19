@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Categorías Tips{% endblock %}
+{% block content %}
+<section class="page-hero glass-card">
+  <span class="section-eyebrow">Admin · Tips</span>
+  <h1>Categorías</h1>
+  <p>Estructura editorial con jerarquía pública.</p>
+</section>
+
+<section class="dashboard-grid">
+  <div class="panel-card">
+    <h3>Nueva categoría</h3>
+    <form class="form-grid" method="post">
+      <label>Nombre
+        <input name="name" required>
+      </label>
+      <label>Slug
+        <input name="slug" required>
+      </label>
+      <label>Parent ID
+        <input name="parent_id" type="number">
+      </label>
+      <label>Posición
+        <input name="position" type="number" value="0">
+      </label>
+      <div class="full actions-row">
+        <button class="button" type="submit">Crear categoría</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="panel-card table-wrap">
+    <h3>Listado</h3>
+    <table>
+      <tr><th>ID</th><th>Nombre</th><th>Slug</th><th>Parent</th><th>Posición</th></tr>
+      {% for c in cats %}
+      <tr>
+        <td>#{{ c.id }}</td><td>{{ c.name }}</td><td>{{ c.slug }}</td><td>{{ c.parent_id or '-' }}</td><td>{{ c.position }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</section>
+{% endblock %}

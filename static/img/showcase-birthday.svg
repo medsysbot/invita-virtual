@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="120" x2="1400" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#CBEDE8"/>
+      <stop offset="1" stop-color="#17676A"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="400" y1="260" x2="1180" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="rgba(255,255,255,0.98)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.72)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1100" rx="44" fill="url(#bg)"/>
+  <circle cx="1260" cy="180" r="180" fill="#FFE07B" opacity="0.28"/>
+  <circle cx="240" cy="930" r="220" fill="white" opacity="0.12"/>
+  <circle cx="1380" cy="920" r="120" fill="white" opacity="0.12"/>
+  <rect x="110" y="110" width="1380" height="880" rx="40" fill="white" fill-opacity="0.14" stroke="white" stroke-opacity="0.24"/>
+  <rect x="220" y="210" width="1160" height="640" rx="34" fill="white" fill-opacity="0.9"/>
+  <rect x="280" y="270" width="420" height="500" rx="28" fill="#CBEDE8" fill-opacity="0.14"/>
+  <rect x="760" y="270" width="560" height="88" rx="22" fill="#17676A" fill-opacity="0.16"/>
+  <rect x="760" y="392" width="520" height="24" rx="12" fill="#17676A" fill-opacity="0.12"/>
+  <rect x="760" y="434" width="420" height="24" rx="12" fill="#17676A" fill-opacity="0.12"/>
+  <rect x="760" y="476" width="470" height="24" rx="12" fill="#17676A" fill-opacity="0.12"/>
+  <rect x="760" y="560" width="230" height="66" rx="20" fill="#CBEDE8"/>
+  <rect x="1012" y="560" width="190" height="66" rx="20" fill="white" stroke="#17676A" stroke-opacity="0.26"/>
+  <rect x="280" y="826" width="320" height="82" rx="24" fill="white" fill-opacity="0.65"/>
+  <rect x="630" y="826" width="320" height="82" rx="24" fill="white" fill-opacity="0.4"/>
+  <rect x="980" y="826" width="320" height="82" rx="24" fill="white" fill-opacity="0.4"/>
+  <text x="300" y="364" fill="#17676A" font-family="Arial, sans-serif" font-size="64" font-weight="800">Cumpleaños</text>
+  <text x="300" y="424" fill="#17676A" fill-opacity="0.8" font-family="Arial, sans-serif" font-size="34" font-weight="500">Diseños versátiles y modernos</text>
+  <text x="790" y="325" fill="#17676A" font-family="Arial, sans-serif" font-size="44" font-weight="800">Invita Virtual</text>
+  <text x="800" y="603" fill="#ffffff" font-family="Arial, sans-serif" font-size="28" font-weight="700">Mostrar propuesta</text>
+  <text x="1042" y="603" fill="#17676A" font-family="Arial, sans-serif" font-size="28" font-weight="700">Ver más</text>
+</svg>

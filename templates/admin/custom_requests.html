@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Solicitudes personalizadas{% endblock %}
+{% block content %}
+<section class="page-hero glass-card">
+  <span class="section-eyebrow">Admin · Servicio completo</span>
+  <h1>Solicitudes personalizadas</h1>
+  <p>Listado visual mejorado para seguimiento comercial.</p>
+</section>
+<div class="table-card table-wrap">
+  <table>
+    <tr><th>ID</th><th>Cliente</th><th>Tipo</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr>
+    {% for i in items %}
+    <tr>
+      <td>#{{ i.id }}</td>
+      <td>{{ i.user_id }}</td>
+      <td>{{ i.event_type or '-' }}</td>
+      <td>{{ i.event_date or '-' }}</td>
+      <td><span class="status-badge {% if i.status == 'in_review' %}review{% elif i.status == 'new' %}draft{% endif %}">{{ i.status }}</span></td>
+      <td>
+        <form method="post" action="{{ url_for('admin.custom_requests_set', item_id=i.id) }}">
+          <select name="status">
+            {% for s in ["new","in_review","quoted","approved","canceled"] %}
+              <option value="{{ s }}" {% if i.status==s %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+          </select>
+          <button class="button" type="submit">Actualizar</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

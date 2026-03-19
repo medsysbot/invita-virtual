@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Servicio completo{% endblock %}
+{% block content %}
+<section class="dashboard-grid">
+  <div class="panel-card">
+    <span class="section-eyebrow">Servicio completo</span>
+    <h1>Déjanos tu brief y nosotros nos encargamos</h1>
+    <p>Formulario mejor presentado para una demo comercial más convincente.</p>
+    <form class="form-grid" method="post">
+      <label>Nombre de contacto
+        <input name="contact_name" required>
+      </label>
+      <label>Teléfono
+        <input name="phone">
+      </label>
+      <label>Email
+        <input type="email" name="email" required>
+      </label>
+      <label>Tipo de evento
+        <input name="event_type" placeholder="Boda / 15 años / Cumpleaños...">
+      </label>
+      <label>Fecha del evento
+        <input name="event_date" placeholder="YYYY-MM-DD">
+      </label>
+      <label>Presupuesto estimado
+        <select name="budget_range">
+          <option value="-">Sin especificar</option>
+          <option value="bajo">Bajo</option>
+          <option value="medio">Medio</option>
+          <option value="alto">Alto</option>
+        </select>
+      </label>
+      <label class="full">Detalles
+        <textarea name="details_text"></textarea>
+      </label>
+      <label class="full">Referencias de estilo
+        <textarea name="style_refs_text"></textarea>
+      </label>
+      <div class="full actions-row">
+        <button class="button" type="submit">Enviar solicitud</button>
+      </div>
+    </form>
+  </div>
+
+  <aside class="panel-card">
+    <div class="card-media"><img src="{{ url_for('static', filename='img/custom-service.svg') }}" alt="Servicio completo de invitaciones"></div>
+    <span class="mini-tag">Producción asistida</span>
+    <h3>Brief, revisión y entrega</h3>
+    <p>Ideal para clientes que prefieren resolver todo con apoyo del equipo desde el primer contacto.</p>
+  </aside>
+</section>
+{% endblock %}

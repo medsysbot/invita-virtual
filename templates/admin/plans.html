@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Planes{% endblock %}
+{% block content %}
+<section class="page-hero glass-card">
+  <span class="section-eyebrow">Admin · Planes</span>
+  <h1>Configuración de planes</h1>
+  <p>Alta y activación de planes con una presentación más limpia.</p>
+</section>
+
+<section class="dashboard-grid">
+  <div class="panel-card">
+    <h3>Nuevo plan</h3>
+    <form class="form-grid" method="post">
+      <label>Nombre
+        <input name="name" required>
+      </label>
+      <label>Moneda
+        <input name="currency" value="ARS">
+      </label>
+      <label class="full">Descripción
+        <input name="description">
+      </label>
+      <label>Precio (entero)
+        <input name="price" type="number" value="0">
+      </label>
+      <label class="full">Features JSON
+        <textarea name="features_json">{}</textarea>
+      </label>
+      <div class="full actions-row">
+        <button class="button" type="submit">Crear plan</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="panel-card">
+    <h3>Planes existentes</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>ID</th><th>Nombre</th><th>Precio</th><th>Activo</th><th>Acción</th></tr>
+        {% for p in items %}
+        <tr>
+          <td>#{{ p.id }}</td>
+          <td>{{ p.name }}</td>
+          <td>{{ p.price }} {{ p.currency }}</td>
+          <td><span class="status-badge {% if p.is_active %}{% else %}archived{% endif %}">{{ "Activo" if p.is_active else "Inactivo" }}</span></td>
+          <td>
+            <form method="post" action="{{ url_for('admin.plans_toggle', plan_id=p.id) }}">
+              <button class="button-outline" type="submit">{% if p.is_active %}Desactivar{% else %}Activar{% endif %}</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}

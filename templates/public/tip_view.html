@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}{{ art.title }}{% endblock %}
+{% block content %}
+<section class="page-hero glass-card listing-hero">
+  <div>
+    <span class="section-eyebrow">Artículo publicado</span>
+    <h1>{{ art.title }}</h1>
+    <p>{{ art.summary or 'Contenido útil para organización de eventos, con enfoque editorial y llamada a la acción comercial.' }}</p>
+    <div class="inline-meta">
+      <span class="status-badge">Publicado</span>
+      <span class="badge">Tips</span>
+      <span class="badge">Evento</span>
+    </div>
+  </div>
+  <div class="card-media">
+    <img src="{{ url_for('static', filename='img/article-hero.svg') }}" alt="Artículo editorial de tips">
+  </div>
+</section>
+
+<section class="article-layout">
+  <article class="article-body glass-card">
+    <p class="summary">{{ art.summary }}</p>
+    <div class="body">{{ art.body_richtext|safe }}</div>
+    <div class="hero-actions">
+      <a class="button" href="{{ url_for('client.crear') }}">Crear invitación</a>
+      <a class="button-outline" href="{{ url_for('public.home') }}#muestrario">Ver plantillas</a>
+    </div>
+  </article>
+
+  <aside class="aside-stack">
+    <div class="info-card">
+      <span class="mini-tag">Conversión</span>
+      <h3>Este artículo también vende</h3>
+      <p>Además de informar, la lectura conduce al usuario hacia el muestrario y el alta de cliente.</p>
+    </div>
+    <div class="info-card">
+      <span class="mini-tag">Flujo editorial</span>
+      <h3>Revisión antes de publicar</h3>
+      <p>Los artículos pasan por borrador, revisión y publicación, para mantener control del contenido.</p>
+    </div>
+    <div class="info-card">
+      <span class="mini-tag">Próximo paso</span>
+      <h3>Convierte la lectura en acción</h3>
+      <div class="inline-actions">
+        <a class="button-outline" href="{{ url_for('auth.register') }}">Crear cuenta</a>
+      </div>
+    </div>
+  </aside>
+</section>
+{% endblock %}

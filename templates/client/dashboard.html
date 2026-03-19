@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Panel cliente{% endblock %}
+{% block content %}
+<section class="dashboard-head page-hero glass-card">
+  <span class="section-eyebrow">Panel cliente</span>
+  <h1>Gestiona tus invitaciones y pedidos</h1>
+  <p>Esta zona mantiene el flujo funcional, pero con una presentación más sólida para demo.</p>
+  <div class="inline-actions">
+    <a class="button" href="{{ url_for('client.crear') }}">Nueva tarjeta</a>
+  </div>
+</section>
+
+<section class="dashboard-grid">
+  <div class="panel-card">
+    <div class="section-head">
+      <div>
+        <span class="section-eyebrow">Mis tarjetas</span>
+        <h2>Invitaciones</h2>
+      </div>
+    </div>
+    {% if invitations %}
+      <div class="table-wrap">
+        <table>
+          <tr><th>ID</th><th>Título</th><th>Estado</th><th>Acción</th></tr>
+          {% for i in invitations %}
+            <tr>
+              <td>#{{ i.id }}</td>
+              <td>{{ i.title or "Sin título" }}</td>
+              <td><span class="status-badge {% if i.status == 'draft' %}draft{% elif i.status == 'pending_payment' %}pending{% endif %}">{{ i.status }}</span></td>
+              <td><a class="button-ghost" href="{{ url_for('client.editar_invitacion', invitation_id=i.id) }}">Editar</a></td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <h3>No hay tarjetas aún</h3>
+        <p>Desde aquí el cliente podrá crear invitaciones nuevas con un aspecto más cercano al producto final.</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="panel-card">
+    <span class="section-eyebrow">Pedidos</span>
+    <h2>Resumen</h2>
+    {% if orders %}
+      <ul class="clean-list">
+        {% for o in orders %}
+          <li class="info-card" style="padding:16px; margin-bottom: 12px;">
+            <strong>Pedido #{{ o.id }}</strong>
+            <p>{{ o.amount }} {{ o.currency }} · {{ o.status }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="empty-state">
+        <h3>Sin pedidos</h3>
+        <p>Cuando se integre el pago real, este bloque servirá para demostrar estados y seguimiento.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
