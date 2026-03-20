@@ -3,203 +3,212 @@
 
 {% block content %}
 <section class="hero-home">
-  <div class="hero-home__content">
-    <span class="section-badge">Invitaciones digitales premium</span>
-    <h1>Tarjetas virtuales que se ven bien desde la primera impresión</h1>
-    <p>
-      Diseños pensados para vender mejor, confirmar asistencia con claridad y dar a cada evento
-      una presentación visual elegante, moderna y memorable.
-    </p>
+  <div class="container hero-home__grid">
+    <div class="hero-home__content">
+      <span class="section-badge">Invitaciones digitales premium</span>
 
-    <div class="hero-home__actions">
-      <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Crear cuenta</a>
-      <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Ingresar</a>
+      <h1>Tarjetas virtuales elegantes para presentar tu evento con más valor</h1>
+
+      <p class="hero-home__text">
+        Diseños pensados para causar una gran primera impresión, ayudar a confirmar asistencia
+        con claridad y mostrar una propuesta visual más profesional desde el primer vistazo.
+      </p>
+
+      <div class="hero-home__actions">
+        <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Crear cuenta</a>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Ingresar</a>
+      </div>
+
+      <ul class="hero-home__list">
+        <li>Diseños destacados para casamientos</li>
+        <li>Invitaciones premium para 15 años</li>
+        <li>Acceso para clientes y gestión administrativa</li>
+      </ul>
     </div>
 
-    <ul class="hero-home__highlights">
-      <li>Diseños para casamientos</li>
-      <li>Invitaciones de 15 años</li>
-      <li>Acceso para clientes y administración</li>
-    </ul>
-  </div>
+    <div class="hero-home__visual">
+      <div class="hero-preview-card">
+        <span class="hero-preview-card__badge">Vista premium</span>
+        <h3>Invita Virtual</h3>
+        <p>Presentación visual clara, elegante y pensada para convertir mejor.</p>
 
-  <div class="hero-home__visual">
-    <div class="hero-home__visual-card">
-      <div class="hero-home__visual-top">Invita Virtual</div>
-      <div class="hero-home__visual-lines">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="hero-home__visual-buttons">
-        <span class="pill pill-primary">Elegir diseño</span>
-        <span class="pill">Ver detalles</span>
+        <div class="hero-preview-card__meta">
+          <span>Casamientos</span>
+          <span>15 años</span>
+        </div>
+
+        <div class="hero-preview-card__actions">
+          <span class="hero-chip hero-chip--primary">Elegir diseño</span>
+          <span class="hero-chip">Ver más</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="featured-models">
-  <div class="section-heading">
-    <span class="section-badge">Muestrario</span>
-    <h2>Nuestras tarjetas destacadas</h2>
-    <p>
-      Dos propuestas visuales premium para casamientos y celebraciones de 15 años.
-    </p>
-  </div>
+  <div class="container">
+    <div class="section-heading section-heading--center">
+      <span class="section-badge">Muestrario</span>
+      <h2>Nuestras tarjetas destacadas</h2>
+      <p>
+        Dos propuestas visuales premium para casamientos y celebraciones de 15 años.
+      </p>
+    </div>
 
-  <div class="featured-models-grid">
-    <article class="featured-model-card">
-      <div class="featured-model-image-wrap">
-        <img
-          src="{{ url_for('static', filename='img/models/casamiento.webp') }}"
-          alt="Modelo de invitación digital para casamiento"
-          class="featured-model-image"
-        >
-      </div>
-
-      <div class="featured-model-content">
-        <span class="featured-model-tag">Casamientos</span>
-        <h3>Invitación de casamiento dorada</h3>
-        <p>
-          Diseño elegante, brillante y romántico, ideal para presentar una boda con
-          una estética premium y una primera impresión fuerte.
-        </p>
-
-        <div class="featured-model-actions">
-          <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Elegir este diseño</a>
+    <div class="featured-models-grid">
+      <article class="featured-model-card">
+        <div class="featured-model-image-wrap">
+          <img
+            src="{{ url_for('static', filename='img/models/casamiento.webp') }}"
+            alt="Modelo de invitación digital para casamiento"
+            class="featured-model-image"
+          >
         </div>
-      </div>
-    </article>
 
-    <article class="featured-model-card">
-      <div class="featured-model-image-wrap">
-        <img
-          src="{{ url_for('static', filename='img/models/quince.webp') }}"
-          alt="Modelo de invitación digital para 15 años"
-          class="featured-model-image"
-        >
-      </div>
+        <div class="featured-model-content">
+          <span class="featured-model-tag">Casamientos</span>
+          <h3>Invitación de casamiento dorada</h3>
+          <p>
+            Una propuesta elegante, romántica y luminosa para presentar bodas con un acabado
+            visual premium y una estética que transmite categoría.
+          </p>
 
-      <div class="featured-model-content">
-        <span class="featured-model-tag">15 años</span>
-        <h3>Invitación de 15 años dorada</h3>
-        <p>
-          Una propuesta visual luminosa y sofisticada para destacar el evento,
-          transmitir glamour y mostrar una tarjeta memorable desde el primer vistazo.
-        </p>
-
-        <div class="featured-model-actions">
-          <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Elegir este diseño</a>
+          <div class="featured-model-actions">
+            <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Elegir este diseño</a>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+
+      <article class="featured-model-card">
+        <div class="featured-model-image-wrap">
+          <img
+            src="{{ url_for('static', filename='img/models/quince.webp') }}"
+            alt="Modelo de invitación digital para 15 años"
+            class="featured-model-image"
+          >
+        </div>
+
+        <div class="featured-model-content">
+          <span class="featured-model-tag">15 años</span>
+          <h3>Invitación de 15 años dorada</h3>
+          <p>
+            Una tarjeta visualmente impactante, ideal para mostrar glamour, celebración,
+            brillo y un estilo protagonista desde la primera pantalla.
+          </p>
+
+          <div class="featured-model-actions">
+            <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Elegir este diseño</a>
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
-<section class="home-steps">
-  <div class="section-heading">
-    <span class="section-badge">Cómo funciona</span>
-    <h2>Un proceso simple para avanzar rápido</h2>
-    <p>
-      Desde el primer contacto hasta el panel del cliente, todo queda ordenado para trabajar y vender mejor.
-    </p>
-  </div>
+<section class="home-benefits">
+  <div class="container">
+    <div class="section-heading section-heading--center">
+      <span class="section-badge">Cómo funciona</span>
+      <h2>Un proceso simple para trabajar mejor</h2>
+      <p>
+        El sistema está pensado para que el cliente vea valor, acceda rápido y avance con claridad.
+      </p>
+    </div>
 
-  <div class="home-steps-grid">
-    <article class="step-card">
-      <span class="step-number">01</span>
-      <h3>Explora el muestrario</h3>
-      <p>Revisa los modelos disponibles y elige el estilo que mejor represente tu evento.</p>
-    </article>
+    <div class="benefits-grid">
+      <article class="benefit-card">
+        <span class="benefit-card__number">01</span>
+        <h3>Explora los modelos</h3>
+        <p>El cliente visualiza propuestas reales antes de entrar al sistema.</p>
+      </article>
 
-    <article class="step-card">
-      <span class="step-number">02</span>
-      <h3>Ingresa o crea tu cuenta</h3>
-      <p>Accede al sistema para comenzar tu invitación o solicitar un trabajo totalmente personalizado.</p>
-    </article>
+      <article class="benefit-card">
+        <span class="benefit-card__number">02</span>
+        <h3>Ingresa o crea su cuenta</h3>
+        <p>Accede para continuar el proceso, elegir plan o solicitar servicio completo.</p>
+      </article>
 
-    <article class="step-card">
-      <span class="step-number">03</span>
-      <h3>Gestiona tu pedido</h3>
-      <p>Desde tu panel puedes completar datos, seguir avances y continuar con el proceso del evento.</p>
-    </article>
+      <article class="benefit-card">
+        <span class="benefit-card__number">03</span>
+        <h3>Gestiona su invitación</h3>
+        <p>Desde el panel puede avanzar con datos, pedidos y seguimiento del trabajo.</p>
+      </article>
+    </div>
   </div>
 </section>
 
 <section class="home-tips">
-  <div class="section-heading">
-    <span class="section-badge">Tips</span>
-    <h2>Contenido útil para organizar mejor cada evento</h2>
-    <p>
-      Ideas, guía y orientación para casamientos, 15 años y otros eventos sociales.
-    </p>
-  </div>
-
-  {% if latest %}
-    <div class="tips-preview-grid">
-      {% for a in latest %}
-        <article class="tip-preview-card">
-          <h3>{{ a.title }}</h3>
-          <p>{{ a.summary or "Contenido pensado para ayudar al cliente a planificar mejor su evento." }}</p>
-          <a href="{{ url_for('public.tip_view', slug=a.slug) }}" class="text-link">Leer artículo</a>
-        </article>
-      {% endfor %}
-    </div>
-  {% else %}
-    <div class="tips-preview-empty">
+  <div class="container">
+    <div class="section-heading section-heading--center">
+      <span class="section-badge">Tips</span>
+      <h2>Contenido útil para organizar mejor cada evento</h2>
       <p>
-        Próximamente verás aquí artículos publicados para casamientos y celebraciones.
+        Consejos, orientación y material pensado para aportar valor desde el frente público.
       </p>
-      <a href="{{ url_for('public.tips_index') }}" class="btn btn-secondary">Ir a Tips</a>
     </div>
-  {% endif %}
+
+    {% if latest %}
+      <div class="tips-preview-grid">
+        {% for a in latest %}
+          <article class="tip-preview-card">
+            <h3>{{ a.title }}</h3>
+            <p>{{ a.summary or "Contenido práctico para ayudar a planificar mejor el evento." }}</p>
+            <a href="{{ url_for('public.tip_view', slug=a.slug) }}" class="text-link">Leer artículo</a>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="tips-preview-empty">
+        <p>Próximamente verás aquí artículos publicados para casamientos y celebraciones.</p>
+        <a href="{{ url_for('public.tips_index') }}" class="btn btn-secondary">Ir a Tips</a>
+      </div>
+    {% endif %}
+  </div>
 </section>
 
 <section class="home-testimonials">
-  <div class="section-heading">
-    <span class="section-badge">Opiniones</span>
-    <h2>Una base pensada para mostrarse con más valor</h2>
-    <p>
-      El frente público tiene que transmitir confianza, diseño y orden desde la primera visita.
-    </p>
-  </div>
-
-  <div class="testimonial-grid">
-    <article class="testimonial-card">
+  <div class="container">
+    <div class="section-heading section-heading--center">
+      <span class="section-badge">Opiniones</span>
+      <h2>Una presentación más sólida para vender mejor</h2>
       <p>
-        “La propuesta visual se siente más premium y el cliente entiende mejor qué está comprando.”
+        El objetivo es que la marca ya se perciba más profesional desde la home.
       </p>
-      <strong>Cliente demo 1</strong>
-    </article>
+    </div>
 
-    <article class="testimonial-card">
-      <p>
-        “Con dos modelos bien mostrados ya se percibe una web comercial más clara y más vendible.”
-      </p>
-      <strong>Cliente demo 2</strong>
-    </article>
+    <div class="testimonial-grid">
+      <article class="testimonial-card">
+        <p>“La presentación transmite más categoría y ayuda a que el cliente valore mejor el servicio.”</p>
+        <strong>Cliente demo</strong>
+      </article>
 
-    <article class="testimonial-card">
-      <p>
-        “El enfoque quedó mucho más limpio: casamientos y 15 años, con una presentación fuerte.”
-      </p>
-      <strong>Cliente demo 3</strong>
-    </article>
+      <article class="testimonial-card">
+        <p>“Con dos modelos bien mostrados, la propuesta ya se siente mucho más comercial.”</p>
+        <strong>Cliente demo</strong>
+      </article>
+
+      <article class="testimonial-card">
+        <p>“La home ahora sí acompaña la idea de un producto visual y profesional.”</p>
+        <strong>Cliente demo</strong>
+      </article>
+    </div>
   </div>
 </section>
 
 <section class="home-cta-final">
-  <div class="home-cta-final__box">
-    <span class="section-badge">Acceso</span>
-    <h2>Empieza a trabajar sobre tu invitación</h2>
-    <p>
-      Crea tu cuenta o ingresa al sistema para continuar con el flujo del cliente.
-    </p>
+  <div class="container">
+    <div class="home-cta-final__box">
+      <span class="section-badge">Acceso</span>
+      <h2>Empieza ahora con tu invitación digital</h2>
+      <p>
+        Crea tu cuenta o entra al sistema para continuar con el flujo del cliente.
+      </p>
 
-    <div class="hero-home__actions">
-      <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Crear cuenta</a>
-      <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Ingresar</a>
+      <div class="hero-home__actions hero-home__actions--center">
+        <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Crear cuenta</a>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Ingresar</a>
+      </div>
     </div>
   </div>
 </section>
