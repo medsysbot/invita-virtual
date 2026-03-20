@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Checkout{% endblock %}
+{% block content %}
+<section class="dashboard-grid">
+  <article class="panel-card">
+    <span class="section-eyebrow">Checkout</span>
+    <h1>Confirmar pedido</h1>
+    <div class="mini-grid">
+      <div class="info-card"><strong>Invitación</strong><p>{{ inv.title or 'Sin título' }}</p></div>
+      <div class="info-card"><strong>Plan</strong><p>{{ plan.name if plan else 'No definido' }}</p></div>
+      <div class="info-card"><strong>Total</strong><p>{{ plan.price if plan else 0 }} {{ plan.currency if plan else 'ARS' }}</p></div>
+    </div>
+    <form method="post">
+      <button class="button" type="submit">Generar pedido</button>
+    </form>
+  </article>
+  <aside class="panel-card">
+    <span class="section-eyebrow">Estado actual</span>
+    {% if order %}
+      <p>Ya existe un pedido asociado: #{{ order.id }}.</p>
+    {% else %}
+      <p>Aún no se generó ninguna orden para esta invitación.</p>
+    {% endif %}
+    <a class="button button-secondary" href="{{ url_for('client.preview_invitation', invitation_id=inv.id) }}">Volver a la vista previa</a>
+  </aside>
+</section>
+{% endblock %}

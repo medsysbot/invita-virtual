@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Invitaciones admin{% endblock %}
+{% block content %}
+<section class="section-head section-block"><div><span class="section-eyebrow">Invitaciones</span><h1>Tarjetas creadas</h1></div></section>
+<div class="panel-card">
+  <div class="table-wrap">
+    <table>
+      <tr><th>ID</th><th>Cliente</th><th>Título</th><th>Plan</th><th>Estado</th><th>Fecha</th></tr>
+      {% for item in items %}
+        <tr>
+          <td>#{{ item.id }}</td>
+          <td>{{ users_map[item.user_id].full_name if item.user_id in users_map else item.user_id }}</td>
+          <td>{{ item.title or 'Sin título' }}</td>
+          <td>{{ plans_map[item.plan_id].name if item.plan_id and item.plan_id in plans_map else '-' }}</td>
+          <td>{{ item.status }}</td>
+          <td>{{ item.date_time or '-' }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

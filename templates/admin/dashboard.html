@@ -4,32 +4,50 @@
 <section class="dashboard-head page-hero glass-card">
   <span class="section-eyebrow">Panel admin</span>
   <h1>Centro de control</h1>
-  <p>Resumen visual del backoffice para clientes, tips, planes y solicitudes personalizadas.</p>
+  <p>Gestiona usuarios, pedidos, invitaciones, solicitudes y contenido editorial desde una base ya operativa.</p>
 </section>
 
 <section class="metrics-grid section-block">
-  <article class="metric-card panel-card"><span class="mini-tag">Usuarios</span><h3>{{ users_count }}</h3><p>Cuentas registradas</p></article>
+  <article class="metric-card panel-card"><span class="mini-tag">Usuarios</span><h3>{{ users_count }}</h3><p>{{ client_count }} clientes · {{ admin_count }} admins</p></article>
   <article class="metric-card panel-card"><span class="mini-tag">Invitaciones</span><h3>{{ inv_count }}</h3><p>Tarjetas creadas</p></article>
-  <article class="metric-card panel-card"><span class="mini-tag">Pedidos</span><h3>{{ orders_count }}</h3><p>Órdenes generadas</p></article>
-  <article class="metric-card panel-card"><span class="mini-tag">Solicitudes</span><h3>{{ cr_count }}</h3><p>Servicio completo</p></article>
+  <article class="metric-card panel-card"><span class="mini-tag">Pedidos</span><h3>{{ orders_count }}</h3><p>{{ pending_orders }} pendientes · {{ paid_orders }} pagos</p></article>
+  <article class="metric-card panel-card"><span class="mini-tag">Solicitudes</span><h3>{{ cr_count }}</h3><p>{{ tips_review }} tips en revisión</p></article>
 </section>
 
-<section class="grid-4">
-  <a class="panel-card" href="{{ url_for('admin.custom_requests') }}" style="text-decoration:none;">
-    <h3>Solicitudes</h3>
-    <p>Gestiona briefs y seguimiento del servicio completo.</p>
-  </a>
-  <a class="panel-card" href="{{ url_for('admin.plans') }}" style="text-decoration:none;">
-    <h3>Planes</h3>
-    <p>Precios, activación y límites por modalidad.</p>
-  </a>
-  <a class="panel-card" href="{{ url_for('admin.tip_categories') }}" style="text-decoration:none;">
-    <h3>Categorías Tips</h3>
-    <p>Taxonomía pública del contenido editorial.</p>
-  </a>
-  <a class="panel-card" href="{{ url_for('admin.tip_articles') }}" style="text-decoration:none;">
-    <h3>Artículos Tips</h3>
-    <p>Borrador, revisión, publicación y archivo.</p>
-  </a>
+<section class="grid-4 section-block">
+  <a class="panel-card" href="{{ url_for('admin.users') }}"><h3>Usuarios</h3><p>Clientes, admins, activación y roles.</p></a>
+  <a class="panel-card" href="{{ url_for('admin.orders') }}"><h3>Pedidos</h3><p>Control de cobro y estados.</p></a>
+  <a class="panel-card" href="{{ url_for('admin.invitations') }}"><h3>Invitaciones</h3><p>Tarjetas creadas por clientes.</p></a>
+  <a class="panel-card" href="{{ url_for('admin.custom_requests') }}"><h3>Solicitudes</h3><p>Servicio completo y seguimiento.</p></a>
+</section>
+
+<section class="dashboard-grid">
+  <div class="panel-card">
+    <div class="section-head"><div><span class="section-eyebrow">Últimos pedidos</span><h2>Actividad reciente</h2></div><a class="button-ghost" href="{{ url_for('admin.orders') }}">Ver todos</a></div>
+    {% if latest_orders %}
+      <div class="table-wrap">
+        <table>
+          <tr><th>ID</th><th>Total</th><th>Estado</th><th>Fecha</th></tr>
+          {% for item in latest_orders %}
+            <tr><td>#{{ item.id }}</td><td>{{ item.amount }} {{ item.currency }}</td><td>{{ item.status }}</td><td>{{ item.created_at.strftime('%d/%m/%Y') if item.created_at else '-' }}</td></tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% else %}
+      <div class="empty-state"><h3>Sin pedidos</h3><p>Todavía no hay movimientos.</p></div>
+    {% endif %}
+  </div>
+  <div class="panel-card">
+    <div class="section-head"><div><span class="section-eyebrow">Solicitudes</span><h2>Servicio completo</h2></div><a class="button-ghost" href="{{ url_for('admin.custom_requests') }}">Ver todas</a></div>
+    {% if latest_requests %}
+      <ul class="clean-list">
+        {% for item in latest_requests %}
+          <li class="info-card"><strong>#{{ item.id }} · {{ item.event_type or 'Evento' }}</strong><p>{{ item.contact_name or item.email }} · {{ item.status }}</p></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="empty-state"><h3>Sin solicitudes</h3><p>Cuando lleguen briefs aparecerán aquí.</p></div>
+    {% endif %}
+  </div>
 </section>
 {% endblock %}

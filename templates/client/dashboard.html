@@ -3,40 +3,42 @@
 {% block content %}
 <section class="dashboard-head page-hero glass-card">
   <span class="section-eyebrow">Panel cliente</span>
-  <h1>Gestiona tus invitaciones y pedidos</h1>
-  <p>Esta zona mantiene el flujo funcional, pero con una presentación más sólida para demo.</p>
+  <h1>Hola, {{ current_user.full_name }}</h1>
+  <p>Gestiona tus invitaciones, pedidos y solicitudes personalizadas desde un solo lugar.</p>
   <div class="inline-actions">
     <a class="button" href="{{ url_for('client.crear') }}">Nueva tarjeta</a>
   </div>
 </section>
 
+<section class="metrics-grid section-block">
+  <article class="metric-card panel-card"><span class="mini-tag">Tarjetas</span><h3>{{ stats.invitations }}</h3><p>Invitaciones creadas</p></article>
+  <article class="metric-card panel-card"><span class="mini-tag">Pedidos</span><h3>{{ stats.orders }}</h3><p>Órdenes registradas</p></article>
+  <article class="metric-card panel-card"><span class="mini-tag">Pendientes</span><h3>{{ stats.pending_orders }}</h3><p>Pagos pendientes</p></article>
+  <article class="metric-card panel-card"><span class="mini-tag">Solicitudes</span><h3>{{ stats.custom_requests }}</h3><p>Servicio completo</p></article>
+</section>
+
 <section class="dashboard-grid">
   <div class="panel-card">
-    <div class="section-head">
-      <div>
-        <span class="section-eyebrow">Mis tarjetas</span>
-        <h2>Invitaciones</h2>
-      </div>
-    </div>
+    <div class="section-head"><div><span class="section-eyebrow">Mis tarjetas</span><h2>Invitaciones</h2></div></div>
     {% if invitations %}
       <div class="table-wrap">
         <table>
-          <tr><th>ID</th><th>Título</th><th>Estado</th><th>Acción</th></tr>
+          <tr><th>ID</th><th>Título</th><th>Estado</th><th>Acciones</th></tr>
           {% for i in invitations %}
             <tr>
               <td>#{{ i.id }}</td>
               <td>{{ i.title or "Sin título" }}</td>
-              <td><span class="status-badge {% if i.status == 'draft' %}draft{% elif i.status == 'pending_payment' %}pending{% endif %}">{{ i.status }}</span></td>
-              <td><a class="button-ghost" href="{{ url_for('client.editar_invitacion', invitation_id=i.id) }}">Editar</a></td>
+              <td><span class="status-badge {% if i.status == 'draft' %}draft{% elif i.status == 'paid' %}paid{% else %}pending{% endif %}">{{ i.status }}</span></td>
+              <td>
+                <a class="button-ghost" href="{{ url_for('client.editar_invitacion', invitation_id=i.id) }}">Editar</a>
+                <a class="button-ghost" href="{{ url_for('client.preview_invitation', invitation_id=i.id) }}">Vista previa</a>
+              </td>
             </tr>
           {% endfor %}
         </table>
       </div>
     {% else %}
-      <div class="empty-state">
-        <h3>No hay tarjetas aún</h3>
-        <p>Desde aquí el cliente podrá crear invitaciones nuevas con un aspecto más cercano al producto final.</p>
-      </div>
+      <div class="empty-state"><h3>No hay tarjetas aún</h3><p>Empieza por crear una invitación con plan y plantilla.</p></div>
     {% endif %}
   </div>
 
@@ -46,18 +48,41 @@
     {% if orders %}
       <ul class="clean-list">
         {% for o in orders %}
-          <li class="info-card" style="padding:16px; margin-bottom: 12px;">
+          <li class="info-card">
             <strong>Pedido #{{ o.id }}</strong>
             <p>{{ o.amount }} {{ o.currency }} · {{ o.status }}</p>
+            {% if o.status == 'pending' %}
+              <form method="post" action="{{ url_for('client.pay_order', order_id=o.id) }}">
+                <button class="button" type="submit">Marcar como pagado (demo)</button>
+              </form>
+            {% endif %}
           </li>
         {% endfor %}
       </ul>
     {% else %}
-      <div class="empty-state">
-        <h3>Sin pedidos</h3>
-        <p>Cuando se integre el pago real, este bloque servirá para demostrar estados y seguimiento.</p>
-      </div>
+      <div class="empty-state"><h3>Sin pedidos</h3><p>Genera un checkout desde la vista previa de una invitación.</p></div>
     {% endif %}
   </div>
+</section>
+
+<section class="section-block panel-card">
+  <div class="section-head"><div><span class="section-eyebrow">Servicio completo</span><h2>Solicitudes personalizadas</h2></div><a class="button" href="{{ url_for('client.custom_request') }}">Nueva solicitud</a></div>
+  {% if custom_requests %}
+    <div class="table-wrap">
+      <table>
+        <tr><th>ID</th><th>Evento</th><th>Fecha</th><th>Estado</th></tr>
+        {% for item in custom_requests %}
+          <tr>
+            <td>#{{ item.id }}</td>
+            <td>{{ item.event_type or '-' }}</td>
+            <td>{{ item.event_date or '-' }}</td>
+            <td><span class="status-badge pending">{{ item.status }}</span></td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  {% else %}
+    <div class="empty-state"><h3>No hay solicitudes</h3><p>Usa el formulario de servicio completo si prefieres que el equipo haga la tarjeta por ti.</p></div>
+  {% endif %}
 </section>
 {% endblock %}

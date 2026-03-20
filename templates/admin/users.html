@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Usuarios{% endblock %}
+{% block content %}
+<section class="section-head section-block">
+  <div><span class="section-eyebrow">Usuarios</span><h1>Clientes y administradores</h1></div>
+  <div class="inline-actions">
+    <a class="button-ghost" href="{{ url_for('admin.users') }}">Todos</a>
+    <a class="button-ghost" href="{{ url_for('admin.users', role='client') }}">Clientes</a>
+    <a class="button-ghost" href="{{ url_for('admin.users', role='admin') }}">Admins</a>
+    <a class="button" href="{{ url_for('admin.user_new_admin') }}">Crear admin</a>
+  </div>
+</section>
+<div class="panel-card">
+  <div class="table-wrap">
+    <table>
+      <tr><th>ID</th><th>Nombre</th><th>Email</th><th>Rol</th><th>Activo</th><th>Acción</th></tr>
+      {% for item in items %}
+        <tr>
+          <td>#{{ item.id }}</td>
+          <td>{{ item.full_name }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.role }}</td>
+          <td>{{ 'Sí' if item.is_active else 'No' }}</td>
+          <td><a class="button-ghost" href="{{ url_for('admin.user_detail', user_id=item.id) }}">Ver detalle</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Pedidos{% endblock %}
+{% block content %}
+<section class="section-head section-block"><div><span class="section-eyebrow">Pedidos</span><h1>Gestión de órdenes</h1></div></section>
+<div class="panel-card">
+  <div class="table-wrap">
+    <table>
+      <tr><th>ID</th><th>Cliente</th><th>Invitación</th><th>Total</th><th>Estado</th><th>Actualizar</th></tr>
+      {% for item in items %}
+        <tr>
+          <td>#{{ item.id }}</td>
+          <td>{{ users_map[item.user_id].full_name if item.user_id in users_map else item.user_id }}</td>
+          <td>#{{ item.invitation_id or '-' }}</td>
+          <td>{{ item.amount }} {{ item.currency }}</td>
+          <td>{{ item.status }}</td>
+          <td>
+            <form method="post" action="{{ url_for('admin.orders_set', order_id=item.id) }}" class="inline-form">
+              <select name="status">
+                {% for s in ['pending','paid','failed','canceled'] %}
+                  <option value="{{ s }}" {% if item.status == s %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+              </select>
+              <button class="button-ghost" type="submit">Guardar</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

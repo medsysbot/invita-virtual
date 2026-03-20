@@ -2,20 +2,20 @@
 {% block title %}Elegir plan{% endblock %}
 {% block content %}
 <section class="page-hero glass-card">
-  <span class="section-eyebrow">Planes DIY</span>
-  <h1>Selecciona el plan que mejor se ajuste al evento</h1>
-  <p>Pantalla mejorada para mostrar valor y diferencias comerciales sin cambiar la lógica base.</p>
+  <span class="section-eyebrow">Paso 1</span>
+  <h1>Elige un plan</h1>
+  <p>Selecciona el alcance de tu invitación antes de empezar a completarla.</p>
 </section>
-
-<form method="post" class="plan-grid">
+<form method="post" class="grid-3 section-block">
   {% for p in planes %}
-    <article class="plan-card">
-      <div class="card-media"><img src="{{ url_for('static', filename='img/plan-card.svg') }}" alt="Plan de invitación"></div>
-      <span class="price-chip">{{ p.price }} {{ p.currency }}</span>
-      <h3>{{ p.name }}</h3>
-      <p>{{ p.description }}</p>
-      <button class="button" type="submit" name="plan_id" value="{{ p.id }}">Elegir plan</button>
-    </article>
+    <label class="panel-card plan-card-option">
+      <input type="radio" name="plan_id" value="{{ p.id }}" required>
+      <img src="{{ url_for('static', filename='img/plan-card.svg') }}" alt="Plan {{ p.name }}">
+      <strong>{{ p.name }}</strong>
+      <span class="price">{{ p.price }} {{ p.currency }}</span>
+      <small>{{ p.description }}</small>
+    </label>
   {% endfor %}
+  <div class="full-row"><button class="button" type="submit">Continuar</button></div>
 </form>
 {% endblock %}

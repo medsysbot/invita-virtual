@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Crear admin{% endblock %}
+{% block content %}
+<section class="panel-card form-shell narrow-form">
+  <span class="section-eyebrow">Administración</span>
+  <h1>Crear administrador</h1>
+  <form method="post" class="auth-form">
+    <div class="form-group"><label>Nombre completo</label><input type="text" name="full_name" required></div>
+    <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
+    <div class="form-group"><label>Teléfono</label><input type="text" name="phone"></div>
+    <div class="form-group"><label>Contraseña</label><input type="password" name="password" minlength="8" required></div>
+    <div class="form-group"><label>Confirmar contraseña</label><input type="password" name="confirm_password" minlength="8" required></div>
+    <button class="button" type="submit">Crear administrador</button>
+  </form>
+</section>
+{% endblock %}

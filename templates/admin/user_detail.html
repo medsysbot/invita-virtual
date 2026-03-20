@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Detalle usuario{% endblock %}
+{% block content %}
+<section class="dashboard-grid">
+  <article class="panel-card">
+    <span class="section-eyebrow">Usuario</span>
+    <h1>{{ user.full_name }}</h1>
+    <p>{{ user.email }}{% if user.phone %} · {{ user.phone }}{% endif %}</p>
+    <form method="post" action="{{ url_for('admin.user_update', user_id=user.id) }}" class="auth-form">
+      <div class="form-group">
+        <label>Rol</label>
+        <select name="role">
+          <option value="client" {% if user.role == 'client' %}selected{% endif %}>Cliente</option>
+          <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="checkbox-inline"><input type="checkbox" name="is_active" value="1" {% if user.is_active %}checked{% endif %}><span>Cuenta activa</span></label>
+      </div>
+      <button class="button" type="submit">Guardar cambios</button>
+    </form>
+  </article>
+  <aside class="panel-card">
+    <span class="section-eyebrow">Resumen</span>
+    <ul class="clean-list bullets">
+      <li>Rol actual: {{ user.role }}</li>
+      <li>Creado: {{ user.created_at.strftime('%d/%m/%Y') if user.created_at else '-' }}</li>
+      <li>Último acceso: {{ user.last_login.strftime('%d/%m/%Y %H:%M') if user.last_login else 'Sin ingreso' }}</li>
+    </ul>
+  </aside>
+</section>
+
+<section class="dashboard-grid section-block">
+  <div class="panel-card"><span class="section-eyebrow">Invitaciones</span><h2>Tarjetas</h2>{% if invitations %}<ul class="clean-list">{% for item in invitations %}<li class="info-card"><strong>#{{ item.id }} · {{ item.title or 'Sin título' }}</strong><p>{{ item.status }}</p></li>{% endfor %}</ul>{% else %}<div class="empty-state"><p>Sin invitaciones.</p></div>{% endif %}</div>
+  <div class="panel-card"><span class="section-eyebrow">Pedidos</span><h2>Órdenes</h2>{% if orders %}<ul class="clean-list">{% for item in orders %}<li class="info-card"><strong>#{{ item.id }}</strong><p>{{ item.amount }} {{ item.currency }} · {{ item.status }}</p></li>{% endfor %}</ul>{% else %}<div class="empty-state"><p>Sin pedidos.</p></div>{% endif %}</div>
+</section>
+<section class="panel-card section-block"><span class="section-eyebrow">Solicitudes</span><h2>Servicio completo</h2>{% if custom_requests %}<ul class="clean-list">{% for item in custom_requests %}<li class="info-card"><strong>#{{ item.id }} · {{ item.event_type or 'Evento' }}</strong><p>{{ item.status }}</p></li>{% endfor %}</ul>{% else %}<div class="empty-state"><p>Sin solicitudes.</p></div>{% endif %}</section>
+{% endblock %}

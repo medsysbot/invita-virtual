@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Vista previa invitación{% endblock %}
+{% block content %}
+<section class="dashboard-grid editor-layout">
+  <article class="panel-card preview-canvas">
+    <span class="section-eyebrow">Vista previa</span>
+    <h1>{{ inv.title or 'Tu invitación' }}</h1>
+    <p class="preview-meta">{{ inv.date_time or 'Fecha pendiente' }} · {{ inv.venue or 'Lugar pendiente' }}</p>
+    <div class="preview-body">{{ inv.body_text or 'Aquí verás el texto principal de tu invitación.' }}</div>
+    <div class="mini-grid">
+      <div class="info-card"><strong>Plantilla</strong><p>{{ template.name if template else 'Sin plantilla' }}</p></div>
+      <div class="info-card"><strong>Plan</strong><p>{{ plan.name if plan else 'Sin plan' }}</p></div>
+      <div class="info-card"><strong>Estado</strong><p>{{ inv.status }}</p></div>
+    </div>
+  </article>
+  <aside class="panel-card">
+    <span class="section-eyebrow">Siguiente paso</span>
+    <h2>Finaliza tu pedido</h2>
+    {% if order %}
+      <p>Pedido #{{ order.id }} · {{ order.amount }} {{ order.currency }} · {{ order.status }}</p>
+      {% if order.status == 'pending' %}
+        <form method="post" action="{{ url_for('client.pay_order', order_id=order.id) }}">
+          <button class="button" type="submit">Marcar como pagado (demo)</button>
+        </form>
+      {% endif %}
+    {% else %}
+      <p>Genera el pedido para pasar la invitación a estado pendiente de pago.</p>
+      <a class="button" href="{{ url_for('client.checkout', invitation_id=inv.id) }}">Ir al checkout</a>
+    {% endif %}
+    <div class="divider"></div>
+    <a class="button button-secondary" href="{{ url_for('client.editar_invitacion', invitation_id=inv.id) }}">Volver al editor</a>
+  </aside>
+</section>
+{% endblock %}

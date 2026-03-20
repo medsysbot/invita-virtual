@@ -46,3 +46,9 @@ flask --app app run --debug
 - Recuperación: /auth/forgot-password
 - Reset: /auth/reset-password/<token>
 - SQL único Supabase: `supabase_auth.sql`
+
+
+## Módulos funcionales cerrados
+- Auth completo: login cliente, registro, login admin, recuperar y resetear contraseña.
+- Cliente: crear invitación, vista previa, checkout, pedido y pago demo.
+- Admin: usuarios, crear admin, detalle de usuario, pedidos, invitaciones y solicitudes.

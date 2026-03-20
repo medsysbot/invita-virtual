@@ -1,43 +1,59 @@
 {% extends "base.html" %}
 {% block title %}Editar invitación{% endblock %}
 {% block content %}
-<section class="dashboard-grid">
+<section class="dashboard-grid editor-layout">
   <div class="panel-card">
-    <span class="section-eyebrow">Editor básico</span>
+    <span class="section-eyebrow">Editor</span>
     <h1>Invitación #{{ inv.id }}</h1>
-    <p>Base funcional con mejor presencia visual para mostrar el flujo al cliente.</p>
-    <form class="form-grid" method="post">
-      <label>Título
-        <input type="text" name="title" value="{{ inv.title or '' }}">
-      </label>
-      <label>Fecha / hora
-        <input type="text" name="date_time" value="{{ inv.date_time or '' }}" placeholder="2026-01-15 20:00">
-      </label>
-      <label class="full">Lugar
+    {% if plan %}
+      <p><strong>Plan:</strong> {{ plan.name }} · {{ plan.price }} {{ plan.currency }}</p>
+    {% endif %}
+    <form method="post" class="auth-form">
+      <div class="form-group">
+        <label>Título</label>
+        <input type="text" name="title" value="{{ inv.title or '' }}" required>
+      </div>
+      <div class="form-group">
+        <label>Fecha y hora</label>
+        <input type="text" name="date_time" value="{{ inv.date_time or '' }}" placeholder="Sábado 20 de junio · 21:00 hs">
+      </div>
+      <div class="form-group">
+        <label>Lugar</label>
         <input type="text" name="venue" value="{{ inv.venue or '' }}">
-      </label>
-      <label class="full">Contenido principal
-        <textarea name="body_text">{{ inv.body_text or '' }}</textarea>
-      </label>
-      <label class="full">Plantilla
+      </div>
+      <div class="form-group">
+        <label>Plantilla</label>
         <select name="template_id">
-          <option value="">-- Sin plantilla --</option>
+          <option value="">Selecciona una plantilla</option>
           {% for t in templates %}
             <option value="{{ t.id }}" {% if inv.template_id == t.id %}selected{% endif %}>{{ t.name }}</option>
           {% endfor %}
         </select>
-      </label>
-      <div class="full actions-row">
-        <button class="button" type="submit">Guardar borrador</button>
+      </div>
+      <div class="form-group">
+        <label>Texto principal</label>
+        <textarea name="body_text" rows="8">{{ inv.body_text or '' }}</textarea>
+      </div>
+      <div class="inline-actions">
+        <button class="button" type="submit" name="action" value="save">Guardar borrador</button>
+        <button class="button button-secondary" type="submit" name="action" value="save_and_preview">Guardar y ver vista previa</button>
       </div>
     </form>
   </div>
-
-  <aside class="panel-card">
-    <div class="card-media"><img src="{{ url_for('static', filename='img/invitation-preview.svg') }}" alt="Vista previa de invitación"></div>
-    <span class="mini-tag">Vista demo</span>
-    <h3>Presentación más vendible</h3>
-    <p>Este bloque funciona como preview visual para que la pantalla no se vea técnica ni vacía.</p>
+  <aside class="panel-card preview-side">
+    <span class="section-eyebrow">Referencia</span>
+    <img src="{{ url_for('static', filename='img/editor-preview.svg') }}" alt="Vista previa">
+    <h3>Resumen rápido</h3>
+    <ul class="clean-list bullets">
+      <li>Estado: {{ inv.status }}</li>
+      <li>Plantilla: {{ inv.template_id or 'No asignada' }}</li>
+      {% if features %}
+        {% for key, value in features.items() %}
+          <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+    <a class="button" href="{{ url_for('client.preview_invitation', invitation_id=inv.id) }}">Abrir vista previa</a>
   </aside>
 </section>
 {% endblock %}
