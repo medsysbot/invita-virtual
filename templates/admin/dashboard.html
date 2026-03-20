@@ -1,53 +1,135 @@
 {% extends "base.html" %}
 {% block title %}Panel admin{% endblock %}
+
 {% block content %}
-<section class="dashboard-head page-hero glass-card">
-  <span class="section-eyebrow">Panel admin</span>
-  <h1>Centro de control</h1>
-  <p>Gestiona usuarios, pedidos, invitaciones, solicitudes y contenido editorial desde una base ya operativa.</p>
-</section>
-
-<section class="metrics-grid section-block">
-  <article class="metric-card panel-card"><span class="mini-tag">Usuarios</span><h3>{{ users_count }}</h3><p>{{ client_count }} clientes · {{ admin_count }} admins</p></article>
-  <article class="metric-card panel-card"><span class="mini-tag">Invitaciones</span><h3>{{ inv_count }}</h3><p>Tarjetas creadas</p></article>
-  <article class="metric-card panel-card"><span class="mini-tag">Pedidos</span><h3>{{ orders_count }}</h3><p>{{ pending_orders }} pendientes · {{ paid_orders }} pagos</p></article>
-  <article class="metric-card panel-card"><span class="mini-tag">Solicitudes</span><h3>{{ cr_count }}</h3><p>{{ tips_review }} tips en revisión</p></article>
-</section>
-
-<section class="grid-4 section-block">
-  <a class="panel-card" href="{{ url_for('admin.users') }}"><h3>Usuarios</h3><p>Clientes, admins, activación y roles.</p></a>
-  <a class="panel-card" href="{{ url_for('admin.orders') }}"><h3>Pedidos</h3><p>Control de cobro y estados.</p></a>
-  <a class="panel-card" href="{{ url_for('admin.invitations') }}"><h3>Invitaciones</h3><p>Tarjetas creadas por clientes.</p></a>
-  <a class="panel-card" href="{{ url_for('admin.custom_requests') }}"><h3>Solicitudes</h3><p>Servicio completo y seguimiento.</p></a>
-</section>
-
-<section class="dashboard-grid">
-  <div class="panel-card">
-    <div class="section-head"><div><span class="section-eyebrow">Últimos pedidos</span><h2>Actividad reciente</h2></div><a class="button-ghost" href="{{ url_for('admin.orders') }}">Ver todos</a></div>
-    {% if latest_orders %}
-      <div class="table-wrap">
-        <table>
-          <tr><th>ID</th><th>Total</th><th>Estado</th><th>Fecha</th></tr>
-          {% for item in latest_orders %}
-            <tr><td>#{{ item.id }}</td><td>{{ item.amount }} {{ item.currency }}</td><td>{{ item.status }}</td><td>{{ item.created_at.strftime('%d/%m/%Y') if item.created_at else '-' }}</td></tr>
-          {% endfor %}
-        </table>
+<section class="dashboard-shell dashboard-shell--admin">
+  <div class="container">
+    <header class="dashboard-hero">
+      <div class="dashboard-hero__content">
+        <span class="section-badge">Panel admin</span>
+        <h1>Centro de control</h1>
+        <p>
+          Gestiona usuarios, pedidos, invitaciones, solicitudes y contenido editorial
+          desde un panel más limpio, ordenado y cómodo de usar.
+        </p>
       </div>
-    {% else %}
-      <div class="empty-state"><h3>Sin pedidos</h3><p>Todavía no hay movimientos.</p></div>
-    {% endif %}
-  </div>
-  <div class="panel-card">
-    <div class="section-head"><div><span class="section-eyebrow">Solicitudes</span><h2>Servicio completo</h2></div><a class="button-ghost" href="{{ url_for('admin.custom_requests') }}">Ver todas</a></div>
-    {% if latest_requests %}
-      <ul class="clean-list">
-        {% for item in latest_requests %}
-          <li class="info-card"><strong>#{{ item.id }} · {{ item.event_type or 'Evento' }}</strong><p>{{ item.contact_name or item.email }} · {{ item.status }}</p></li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <div class="empty-state"><h3>Sin solicitudes</h3><p>Cuando lleguen briefs aparecerán aquí.</p></div>
-    {% endif %}
+    </header>
+
+    <section class="dashboard-stats">
+      <article class="dashboard-stat">
+        <span class="dashboard-stat__label">Usuarios</span>
+        <h3>{{ users_count }}</h3>
+        <p>{{ client_count }} clientes · {{ admin_count }} admins</p>
+      </article>
+
+      <article class="dashboard-stat">
+        <span class="dashboard-stat__label">Invitaciones</span>
+        <h3>{{ inv_count }}</h3>
+        <p>Tarjetas creadas</p>
+      </article>
+
+      <article class="dashboard-stat">
+        <span class="dashboard-stat__label">Pedidos</span>
+        <h3>{{ orders_count }}</h3>
+        <p>{{ pending_orders }} pendientes · {{ paid_orders }} pagos</p>
+      </article>
+
+      <article class="dashboard-stat">
+        <span class="dashboard-stat__label">Solicitudes</span>
+        <h3>{{ cr_count }}</h3>
+        <p>{{ tips_review }} tips en revisión</p>
+      </article>
+    </section>
+
+    <section class="dashboard-shortcuts">
+      <a class="dashboard-shortcut" href="{{ url_for('admin.users') }}">
+        <h3>Usuarios</h3>
+        <p>Clientes, administradores, activación y control de roles.</p>
+      </a>
+
+      <a class="dashboard-shortcut" href="{{ url_for('admin.orders') }}">
+        <h3>Pedidos</h3>
+        <p>Seguimiento de cobro, estados y movimientos del sistema.</p>
+      </a>
+
+      <a class="dashboard-shortcut" href="{{ url_for('admin.invitations') }}">
+        <h3>Invitaciones</h3>
+        <p>Tarjetas creadas por clientes y revisión del material generado.</p>
+      </a>
+
+      <a class="dashboard-shortcut" href="{{ url_for('admin.custom_requests') }}">
+        <h3>Solicitudes</h3>
+        <p>Servicio completo, briefs y seguimiento de trabajos personalizados.</p>
+      </a>
+    </section>
+
+    <section class="dashboard-columns">
+      <article class="dashboard-card">
+        <div class="dashboard-card__header">
+          <div>
+            <span class="dashboard-card__eyebrow">Últimos pedidos</span>
+            <h2>Actividad reciente</h2>
+          </div>
+          <a class="button-ghost" href="{{ url_for('admin.orders') }}">Ver todos</a>
+        </div>
+
+        {% if latest_orders %}
+          <div class="table-wrap">
+            <table>
+              <tr>
+                <th>ID</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+              </tr>
+              {% for item in latest_orders %}
+                <tr>
+                  <td>#{{ item.id }}</td>
+                  <td>{{ item.amount }} {{ item.currency }}</td>
+                  <td>
+                    <span class="status-badge {% if item.status == 'paid' %}paid{% else %}pending{% endif %}">
+                      {{ item.status }}
+                    </span>
+                  </td>
+                  <td>{{ item.created_at.strftime('%d/%m/%Y') if item.created_at else '-' }}</td>
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+        {% else %}
+          <div class="empty-state">
+            <h3>Sin pedidos</h3>
+            <p>Todavía no hay movimientos registrados.</p>
+          </div>
+        {% endif %}
+      </article>
+
+      <article class="dashboard-card">
+        <div class="dashboard-card__header">
+          <div>
+            <span class="dashboard-card__eyebrow">Servicio completo</span>
+            <h2>Solicitudes recientes</h2>
+          </div>
+          <a class="button-ghost" href="{{ url_for('admin.custom_requests') }}">Ver todas</a>
+        </div>
+
+        {% if latest_requests %}
+          <ul class="clean-list">
+            {% for item in latest_requests %}
+              <li class="info-card">
+                <strong>#{{ item.id }} · {{ item.event_type or 'Evento' }}</strong>
+                <p>{{ item.contact_name or item.email }} · {{ item.status }}</p>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="empty-state">
+            <h3>Sin solicitudes</h3>
+            <p>Cuando lleguen briefs o pedidos personalizados aparecerán aquí.</p>
+          </div>
+        {% endif %}
+      </article>
+    </section>
   </div>
 </section>
 {% endblock %}
