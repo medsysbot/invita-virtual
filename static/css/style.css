@@ -1198,3 +1198,267 @@ td {
     width: 100%;
   }
 }
+
+  .tips-hero {
+  padding: 76px 0 38px;
+  background:
+    radial-gradient(circle at top left, rgba(120, 88, 255, 0.10) 0%, transparent 36%),
+    radial-gradient(circle at bottom right, rgba(255, 182, 214, 0.16) 0%, transparent 34%),
+    linear-gradient(180deg, #fcfbff 0%, #f7f4ff 100%);
+}
+
+.tips-hero__inner {
+  max-width: 860px;
+}
+
+.tips-hero__inner h1 {
+  margin: 18px 0 16px;
+  font-size: clamp(38px, 5vw, 66px);
+  line-height: 1.03;
+  letter-spacing: -0.05em;
+}
+
+.tips-hero__inner p {
+  margin: 0 0 26px;
+  font-size: 19px;
+  line-height: 1.8;
+  color: var(--text-soft);
+}
+
+.tips-search {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tips-search input {
+  flex: 1 1 320px;
+}
+
+.tips-categories,
+.tips-featured,
+.tips-styles,
+.tips-practical,
+.tips-cta {
+  padding: 72px 0;
+}
+
+.tips-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tips-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(77, 50, 156, 0.12);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.tips-chip:hover {
+  color: var(--primary);
+  border-color: rgba(109, 74, 230, 0.28);
+}
+
+.tips-chip--soft {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: transparent;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.tips-card,
+.tips-style-card,
+.tips-practical-card,
+.tips-cta__box {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  box-shadow: var(--shadow-md);
+}
+
+.tips-card {
+  padding: 26px;
+}
+
+.tips-card__tag {
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tips-card h3 {
+  margin: 0 0 12px;
+  font-size: 28px;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+}
+
+.tips-card p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-soft);
+}
+
+.tips-styles {
+  background: linear-gradient(180deg, rgba(248, 245, 255, 0.6) 0%, rgba(255,255,255,0) 100%);
+}
+
+.tips-style-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.tips-style-card {
+  padding: 28px;
+}
+
+.tips-style-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.tips-style-card h3 {
+  margin: 0 0 12px;
+  font-size: 28px;
+  line-height: 1.18;
+}
+
+.tips-style-card p {
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-soft);
+}
+
+.tips-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.tips-practical-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.tips-practical-card {
+  padding: 24px;
+}
+
+.tips-practical-card h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.tips-practical-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-soft);
+}
+
+.tips-cta__box {
+  padding: 42px;
+  text-align: center;
+  background:
+    radial-gradient(circle at top left, rgba(120, 88, 255, 0.10) 0%, transparent 32%),
+    radial-gradient(circle at bottom right, rgba(255, 182, 214, 0.18) 0%, transparent 28%),
+    #fff;
+}
+
+.tips-cta__box h2 {
+  margin: 18px 0 12px;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.tips-cta__box p {
+  max-width: 760px;
+  margin: 0 auto 26px;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--text-soft);
+}
+
+@media (max-width: 1100px) {
+  .tips-grid,
+  .tips-style-grid,
+  .tips-practical-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .tips-hero,
+  .tips-categories,
+  .tips-featured,
+  .tips-styles,
+  .tips-practical,
+  .tips-cta {
+    padding: 54px 0;
+  }
+
+  .tips-hero__inner h1 {
+    font-size: 40px;
+  }
+
+  .tips-hero__inner p,
+  .tips-cta__box p {
+    font-size: 16px;
+  }
+
+  .tips-search {
+    flex-direction: column;
+  }
+
+  .tips-card,
+  .tips-style-card,
+  .tips-practical-card,
+  .tips-cta__box {
+    padding: 22px;
+  }
+
+  .tips-card h3,
+  .tips-style-card h3,
+  .tips-cta__box h2 {
+    font-size: 28px;
+  }
+}
