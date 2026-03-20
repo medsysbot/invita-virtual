@@ -575,6 +575,47 @@ select {
   padding: 36px;
 }
 
+/* Testimonials */
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.testimonial-card__top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.testimonial-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 999px;
+  background: #f4eeff;
+  border: 1px solid rgba(109, 74, 230, 0.12);
+  padding: 6px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.testimonial-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.testimonial-meta strong {
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.testimonial-meta span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
 /* CTA final */
 .home-cta-final__box {
   padding: 42px;
