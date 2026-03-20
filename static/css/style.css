@@ -1508,3 +1508,97 @@ td {
     max-width: 300px !important;
   }
 }
+
+  /* ===== Corrección visual formularios auth ===== */
+.password-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-field input {
+  width: 100%;
+  padding-right: 110px !important;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid rgba(77, 50, 156, 0.14);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.password-toggle:hover {
+  border-color: rgba(109, 74, 230, 0.28);
+  color: var(--primary);
+}
+
+.auth-inline-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: -2px;
+}
+
+.auth-inline-link {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-inline-link:hover {
+  opacity: 0.85;
+}
+
+.auth-submit {
+  margin-top: 8px;
+}
+
+.auth-secondary-action {
+  margin-top: 12px;
+}
+
+.auth-secondary-action.btn,
+.auth-submit.btn {
+  width: 100%;
+}
+
+.auth-form .checkbox-inline input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  padding: 0;
+  margin: 0;
+  border-radius: 4px;
+}
+
+@media (max-width: 760px) {
+  .password-field input {
+    padding-right: 96px !important;
+  }
+
+  .password-toggle {
+    right: 10px;
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  .auth-inline-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
