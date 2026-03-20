@@ -6,11 +6,10 @@
   <div class="container">
     <div class="tips-hero__inner">
       <span class="section-badge">Tips</span>
-      <h1>Ideas, guías y consejos para organizar eventos con más estilo</h1>
+      <h1>Consejos reales para organizar eventos con más estilo y claridad</h1>
       <p>
-        Encuentra inspiración para casamientos, 15 años, cumpleaños infantiles, reuniones de adultos
-        y celebraciones más clásicas o modernas. Una sección pensada para aportar valor real y ayudar
-        a planificar mejor cada evento.
+        Ideas prácticas para casamientos, 15 años y celebraciones sociales. Una guía pensada
+        para ayudar a tomar mejores decisiones antes de avanzar con la invitación y el evento.
       </p>
 
       <form method="get" class="tips-search">
@@ -18,7 +17,7 @@
           type="text"
           name="q"
           value="{{ q or '' }}"
-          placeholder="Buscar consejos, estilos, presupuesto, RSVP, decoración..."
+          placeholder="Buscar organización, RSVP, ambientación, presupuesto..."
         >
         <button type="submit" class="btn btn-primary">Buscar en Tips</button>
       </form>
@@ -36,8 +35,7 @@
       {% endfor %}
       <span class="tips-chip tips-chip--soft">Modernos</span>
       <span class="tips-chip tips-chip--soft">Minimalistas</span>
-      <span class="tips-chip tips-chip--soft">Cargados</span>
-      <span class="tips-chip tips-chip--soft">Checklist</span>
+      <span class="tips-chip tips-chip--soft">Brillantes</span>
       <span class="tips-chip tips-chip--soft">Presupuesto</span>
       <span class="tips-chip tips-chip--soft">RSVP</span>
     </div>
@@ -47,123 +45,87 @@
 <section class="tips-featured">
   <div class="container">
     <div class="section-heading section-heading--center">
-      <span class="section-badge">Consejos destacados</span>
-      <h2>Qué puede encontrar aquí tu cliente</h2>
+      <span class="section-badge">Tips principales</span>
+      <h2>Qué conviene resolver primero</h2>
       <p>
-        Desde organización práctica hasta ideas de ambientación, estilo visual y detalles que elevan la experiencia del evento.
+        Antes de elegir detalles decorativos, hay decisiones que ordenan mejor todo el evento.
       </p>
     </div>
 
-    {% if articles %}
-      <div class="tips-grid">
-        {% for a in articles %}
-          <article class="tips-card">
-            <span class="tips-card__tag">Artículo publicado</span>
-            <h3>{{ a.title }}</h3>
-            <p>{{ a.summary or "Guía práctica para ayudar a organizar el evento con más claridad y mejor presentación." }}</p>
-            <a href="{{ url_for('public.tip_view', slug=a.slug) }}" class="text-link">Leer artículo</a>
-          </article>
-        {% endfor %}
-      </div>
-    {% else %}
-      <div class="tips-grid">
-        <article class="tips-card">
-          <span class="tips-card__tag">Casamientos</span>
-          <h3>Checklist completo para organizar un casamiento sin olvidar detalles</h3>
-          <p>
-            Una guía por etapas para definir salón, invitados, catering, ceremonia, fotografía, música y tiempos clave.
-          </p>
-        </article>
+    <div class="tips-grid">
+      <article class="tips-card">
+        <span class="tips-card__tag">Organización</span>
+        <h3>Define el estilo general antes de elegir proveedores</h3>
+        <p>
+          Cuando el cliente decide si quiere un evento clásico, moderno, minimalista o brillante,
+          todo lo demás empieza a tener coherencia visual.
+        </p>
+      </article>
 
-        <article class="tips-card">
-          <span class="tips-card__tag">Casamientos modernos</span>
-          <h3>Cómo lograr un casamiento moderno sin perder elegancia</h3>
-          <p>
-            Ideas para trabajar una estética limpia, actual y sofisticada, combinando paletas neutras, tipografía fina y decoración sutil.
-          </p>
-        </article>
+      <article class="tips-card">
+        <span class="tips-card__tag">Invitados</span>
+        <h3>Resuelve la confirmación con tiempo</h3>
+        <p>
+          Un RSVP claro evita desorden de último momento y ayuda a organizar mejor salón, comida, mesas y tiempos.
+        </p>
+      </article>
 
-        <article class="tips-card">
-          <span class="tips-card__tag">Casamientos cargados</span>
-          <h3>Inspiración para bodas doradas, brillantes y visualmente protagonistas</h3>
-          <p>
-            Recomendaciones para quienes buscan una propuesta más intensa: iluminación cálida, detalles dorados, fondos con presencia y acabados más ornamentales.
-          </p>
-        </article>
+      <article class="tips-card">
+        <span class="tips-card__tag">Presupuesto</span>
+        <h3>Reparte el presupuesto por prioridades reales</h3>
+        <p>
+          Salón, comida, foto, música y presentación visual deben ordenarse según impacto y necesidad, no solo por impulso.
+        </p>
+      </article>
 
-        <article class="tips-card">
-          <span class="tips-card__tag">15 años</span>
-          <h3>Cómo armar una fiesta de 15 años inolvidable</h3>
-          <p>
-            Desde la temática hasta el cronograma de entrada, mesa dulce, coreografía, fotografía, dress code y confirmación de asistencia.
-          </p>
-        </article>
+      <article class="tips-card">
+        <span class="tips-card__tag">Casamientos</span>
+        <h3>La invitación debe reflejar el tono de la boda</h3>
+        <p>
+          Una boda romántica, clásica o lujosa necesita una invitación coherente con esa atmósfera.
+        </p>
+      </article>
 
-        <article class="tips-card">
-          <span class="tips-card__tag">15 años minimalistas</span>
-          <h3>Estilo minimalista para 15 años: menos elementos, más impacto</h3>
-          <p>
-            Claves para usar pocos recursos visuales pero con buena composición, una paleta limpia y detalles protagonistas bien ubicados.
-          </p>
-        </article>
+      <article class="tips-card">
+        <span class="tips-card__tag">15 años</span>
+        <h3>Piensa en la entrada, el vestido y la identidad visual</h3>
+        <p>
+          En una fiesta de 15 la imagen general pesa mucho. La invitación tiene que acompañar esa estética desde el inicio.
+        </p>
+      </article>
 
-        <article class="tips-card">
-          <span class="tips-card__tag">15 años brillantes</span>
-          <h3>Ideas glam para una celebración de 15 años más luminosa</h3>
-          <p>
-            Brillos, fondos cálidos, dorados, rosados y escenarios con presencia para eventos que buscan una estética más festiva y llamativa.
-          </p>
-        </article>
-
-        <article class="tips-card">
-          <span class="tips-card__tag">Niños</span>
-          <h3>Cómo organizar un cumpleaños infantil práctico y bien resuelto</h3>
-          <p>
-            Espacios seguros, tiempos cortos, actividades dinámicas, zonas para adultos y propuestas de comida simples pero efectivas.
-          </p>
-        </article>
-
-        <article class="tips-card">
-          <span class="tips-card__tag">Adultos</span>
-          <h3>Ideas para cumpleaños de adultos con mejor ambientación</h3>
-          <p>
-            Opciones de barra, música, ambientación nocturna, invitación elegante y distribución del espacio para reuniones más cómodas.
-          </p>
-        </article>
-
-        <article class="tips-card">
-          <span class="tips-card__tag">Tercera edad</span>
-          <h3>Consejos para eventos cómodos, accesibles y cálidos</h3>
-          <p>
-            Recomendaciones para priorizar confort, accesibilidad, volumen adecuado, circulación simple y tiempos de evento más amables.
-          </p>
-        </article>
-      </div>
-    {% endif %}
+      <article class="tips-card">
+        <span class="tips-card__tag">Claridad</span>
+        <h3>Menos información mal ubicada, más lectura clara</h3>
+        <p>
+          El diseño debe ayudar a leer rápido: fecha, lugar, horario, dress code y confirmación tienen que verse fácil.
+        </p>
+      </article>
+    </div>
   </div>
 </section>
 
 <section class="tips-styles">
   <div class="container">
     <div class="section-heading section-heading--center">
-      <span class="section-badge">Ideas por estilo</span>
-      <h2>Modernas, minimalistas o cargadas</h2>
+      <span class="section-badge">Estilos</span>
+      <h2>Modernos, minimalistas o más cargados</h2>
       <p>
-        No todos los clientes quieren lo mismo. Esta sección ayuda a orientar según el carácter visual del evento.
+        No todos los eventos comunican igual. Elegir un enfoque visual correcto cambia la percepción del cliente y de los invitados.
       </p>
     </div>
 
     <div class="tips-style-grid">
       <article class="tips-style-card">
         <span class="tips-style-card__icon">M</span>
-        <h3>Modernas</h3>
+        <h3>Modernos</h3>
         <p>
-          Para clientes que prefieren una imagen actual, limpia y más digital. Funcionan muy bien con fondos simples, tipografías elegantes y pocos elementos fuertes.
+          Funcionan muy bien para clientes que quieren una imagen limpia, actual y digital, con pocos elementos pero bien resueltos.
         </p>
         <ul class="tips-list">
-          <li>Paletas limpias y actuales</li>
-          <li>Diseño más aireado</li>
-          <li>Elementos visuales equilibrados</li>
+          <li>Paletas definidas y limpias</li>
+          <li>Diseños con más aire</li>
+          <li>Jerarquía clara de información</li>
         </ul>
       </article>
 
@@ -171,25 +133,25 @@
         <span class="tips-style-card__icon">M</span>
         <h3>Minimalistas</h3>
         <p>
-          Ideales para eventos sofisticados que buscan orden visual, elegancia y una lectura clara, sin sobrecargar la composición.
+          Ideales para eventos elegantes donde el diseño necesita respirar y transmitir orden, categoría y sofisticación.
         </p>
         <ul class="tips-list">
-          <li>Menos elementos, mejor composición</li>
-          <li>Tipografías protagonistas</li>
-          <li>Foco en información clave</li>
+          <li>Pocos elementos visuales</li>
+          <li>Tipografía protagonista</li>
+          <li>Estética sobria y fina</li>
         </ul>
       </article>
 
       <article class="tips-style-card">
         <span class="tips-style-card__icon">C</span>
-        <h3>Cargadas</h3>
+        <h3>Cargados o protagonistas</h3>
         <p>
-          Para clientes que quieren brillo, presencia, detalles decorativos, marcos, luces, florales o fondos más intensos.
+          Para eventos donde el brillo, los dorados, los fondos intensos o los detalles ornamentales forman parte del atractivo principal.
         </p>
         <ul class="tips-list">
-          <li>Más ornamento y brillo</li>
-          <li>Escenas visuales impactantes</li>
-          <li>Estéticas románticas o glam</li>
+          <li>Más impacto visual</li>
+          <li>Detalles decorativos fuertes</li>
+          <li>Brillo, lujo y romanticismo</li>
         </ul>
       </article>
     </div>
@@ -199,42 +161,42 @@
 <section class="tips-practical">
   <div class="container">
     <div class="section-heading section-heading--center">
-      <span class="section-badge">Consejos prácticos</span>
-      <h2>Tips que siempre suman valor</h2>
+      <span class="section-badge">Checklist</span>
+      <h2>Tips prácticos que siempre suman</h2>
       <p>
-        Recomendaciones universales que pueden aparecer en distintos artículos y ayudan a dar una imagen más profesional.
+        Consejos simples que pueden servir tanto para casamientos como para 15 años y otros eventos.
       </p>
     </div>
 
     <div class="tips-practical-grid">
       <article class="tips-practical-card">
-        <h3>Confirma con tiempo</h3>
-        <p>Usa RSVP claro y visible para ordenar la asistencia y mejorar la logística del evento.</p>
+        <h3>Confirma antes de cerrar mesas</h3>
+        <p>Evita errores de logística y gastos innecesarios definiendo bien la asistencia real.</p>
       </article>
 
       <article class="tips-practical-card">
-        <h3>Define un estilo antes de comprar</h3>
-        <p>Tomar la decisión visual primero evita mezclar ideas modernas con otras demasiado cargadas.</p>
+        <h3>No mezcles demasiados estilos</h3>
+        <p>Una línea visual coherente siempre se percibe más elegante que una combinación desordenada.</p>
+      </article>
+
+      <article class="tips-practical-card">
+        <h3>Haz visible la información esencial</h3>
+        <p>Fecha, lugar y hora tienen que verse rápido, tanto en la invitación como en la comunicación general.</p>
       </article>
 
       <article class="tips-practical-card">
         <h3>Piensa en el recorrido del invitado</h3>
-        <p>Desde la invitación hasta la llegada al evento, todo debe sentirse coherente y fácil de entender.</p>
+        <p>Desde que recibe la invitación hasta que llega al salón, todo debe sentirse claro y simple.</p>
       </article>
 
       <article class="tips-practical-card">
-        <h3>No sobrecargues la información</h3>
-        <p>La claridad siempre vende mejor: fecha, lugar, hora, dress code y confirmación bien ordenados.</p>
+        <h3>Elige una paleta antes de decorar</h3>
+        <p>Eso ayuda a tomar mejores decisiones en ambientación, papelería, vestuario y diseño.</p>
       </article>
 
       <article class="tips-practical-card">
-        <h3>Trabaja con una paleta definida</h3>
-        <p>Elegir dos o tres tonos base ayuda a que toda la comunicación se vea más elegante.</p>
-      </article>
-
-      <article class="tips-practical-card">
-        <h3>Deja espacio para lo emocional</h3>
-        <p>Una frase, una foto o un detalle visual bien puesto puede cambiar completamente la percepción del evento.</p>
+        <h3>Deja algo memorable</h3>
+        <p>Una frase, una foto o un detalle visual bien pensado puede elevar la experiencia general del evento.</p>
       </article>
     </div>
   </div>
