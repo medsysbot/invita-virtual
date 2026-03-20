@@ -112,68 +112,140 @@
       <span class="section-badge">Galería</span>
       <h2>Explora nuestras tarjetas</h2>
       <p>
-        Una selección de estilos visuales para inspirarte y ayudarte a elegir la propuesta ideal para tu evento.
+        Haz clic sobre cualquier diseño para verlo más grande y recorrer distintos estilos visuales.
       </p>
     </div>
 
     <div class="gallery-showcase__grid">
-      <article class="gallery-card">
-        <img src="{{ url_for('static', filename='img/gallery/diseno-01.webp') }}" alt="Diseño de tarjeta 1" class="gallery-card__image">
+      <article
+        class="gallery-card gallery-card--clickable"
+        data-lightbox-image="{{ url_for('static', filename='img/gallery/diseno-01.webp') }}"
+        data-lightbox-title="Diseño editorial elegante"
+        data-lightbox-tag="Estilo premium"
+        data-lightbox-description="Una invitación sobria, limpia y refinada. Ideal para eventos donde el diseño tipográfico y la presentación clásica tienen el protagonismo."
+      >
+        <div class="gallery-card__image-wrap">
+          <img src="{{ url_for('static', filename='img/gallery/diseno-01.webp') }}" alt="Diseño editorial elegante" class="gallery-card__image">
+          <div class="gallery-card__overlay">
+            <span>Ver diseño</span>
+          </div>
+        </div>
         <div class="gallery-card__content">
           <span class="gallery-card__tag">Estilo premium</span>
-          <h3>Diseño elegante</h3>
-          <p>Una propuesta refinada para eventos que buscan una presentación visual distinguida.</p>
-          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+          <h3>Diseño editorial elegante</h3>
+          <p>
+            Una propuesta sobria y distinguida, ideal para quienes buscan una invitación limpia y de estética clásica.
+          </p>
         </div>
       </article>
 
-      <article class="gallery-card">
-        <img src="{{ url_for('static', filename='img/gallery/diseno-02.webp') }}" alt="Diseño de tarjeta 2" class="gallery-card__image">
-        <div class="gallery-card__content">
-          <span class="gallery-card__tag">Brillante</span>
-          <h3>Diseño dorado</h3>
-          <p>Ideal para quienes buscan una tarjeta con presencia, brillo y una apariencia impactante.</p>
-          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+      <article
+        class="gallery-card gallery-card--clickable"
+        data-lightbox-image="{{ url_for('static', filename='img/gallery/diseno-02.webp') }}"
+        data-lightbox-title="Diseño floral romántico"
+        data-lightbox-tag="Romántico"
+        data-lightbox-description="Una tarjeta con detalles florales suaves y una composición delicada. Perfecta para bodas o celebraciones con un tono elegante y romántico."
+      >
+        <div class="gallery-card__image-wrap">
+          <img src="{{ url_for('static', filename='img/gallery/diseno-02.webp') }}" alt="Diseño floral romántico" class="gallery-card__image">
+          <div class="gallery-card__overlay">
+            <span>Ver diseño</span>
+          </div>
         </div>
-      </article>
-
-      <article class="gallery-card">
-        <img src="{{ url_for('static', filename='img/gallery/diseno-03.webp') }}" alt="Diseño de tarjeta 3" class="gallery-card__image">
         <div class="gallery-card__content">
           <span class="gallery-card__tag">Romántico</span>
-          <h3>Diseño delicado</h3>
-          <p>Una composición visual suave y elegante, pensada para transmitir emoción y estilo.</p>
-          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+          <h3>Diseño floral romántico</h3>
+          <p>
+            Una composición delicada con detalles suaves, pensada para transmitir calidez, elegancia y armonía visual.
+          </p>
         </div>
       </article>
 
-      <article class="gallery-card">
-        <img src="{{ url_for('static', filename='img/gallery/diseno-04.webp') }}" alt="Diseño de tarjeta 4" class="gallery-card__image">
+      <article
+        class="gallery-card gallery-card--clickable"
+        data-lightbox-image="{{ url_for('static', filename='img/gallery/diseno-03.webp') }}"
+        data-lightbox-title="Diseño quince azul nocturno"
+        data-lightbox-tag="Quinceañera"
+        data-lightbox-description="Un diseño protagonista y brillante, con una imagen fuerte y festiva. Ideal para una celebración de 15 años con presencia visual e impacto."
+      >
+        <div class="gallery-card__image-wrap">
+          <img src="{{ url_for('static', filename='img/gallery/diseno-03.webp') }}" alt="Diseño quince azul nocturno" class="gallery-card__image">
+          <div class="gallery-card__overlay">
+            <span>Ver diseño</span>
+          </div>
+        </div>
         <div class="gallery-card__content">
-          <span class="gallery-card__tag">Moderno</span>
-          <h3>Diseño actual</h3>
-          <p>Una opción limpia y moderna para clientes que prefieren una imagen fresca y actual.</p>
-          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+          <span class="gallery-card__tag">Quinceañera</span>
+          <h3>Diseño quince azul nocturno</h3>
+          <p>
+            Una invitación intensa y llamativa para 15 años, pensada para resaltar brillo, escenario y presencia.
+          </p>
         </div>
       </article>
 
-      <article class="gallery-card">
-        <img src="{{ url_for('static', filename='img/gallery/diseno-05.webp') }}" alt="Diseño de tarjeta 5" class="gallery-card__image">
+      <article
+        class="gallery-card gallery-card--clickable"
+        data-lightbox-image="{{ url_for('static', filename='img/gallery/diseno-04.webp') }}"
+        data-lightbox-title="Diseño quince dorado clásico"
+        data-lightbox-tag="Brillante"
+        data-lightbox-description="Una propuesta luminosa y delicada para 15 años, con una estética cálida, dorada y muy elegante para destacar la celebración."
+      >
+        <div class="gallery-card__image-wrap">
+          <img src="{{ url_for('static', filename='img/gallery/diseno-04.webp') }}" alt="Diseño quince dorado clásico" class="gallery-card__image">
+          <div class="gallery-card__overlay">
+            <span>Ver diseño</span>
+          </div>
+        </div>
+        <div class="gallery-card__content">
+          <span class="gallery-card__tag">Brillante</span>
+          <h3>Diseño quince dorado clásico</h3>
+          <p>
+            Una opción luminosa y protagonista, ideal para mostrar una celebración de 15 años con estilo y glamour.
+          </p>
+        </div>
+      </article>
+
+      <article
+        class="gallery-card gallery-card--clickable"
+        data-lightbox-image="{{ url_for('static', filename='img/gallery/diseno-05.webp') }}"
+        data-lightbox-title="Diseño dorado protagonista"
+        data-lightbox-tag="Sofisticado"
+        data-lightbox-description="Una tarjeta visualmente fuerte, con brillo y un enfoque central muy marcado. Perfecta para clientes que quieren una invitación impactante."
+      >
+        <div class="gallery-card__image-wrap">
+          <img src="{{ url_for('static', filename='img/gallery/diseno-05.webp') }}" alt="Diseño dorado protagonista" class="gallery-card__image">
+          <div class="gallery-card__overlay">
+            <span>Ver diseño</span>
+          </div>
+        </div>
         <div class="gallery-card__content">
           <span class="gallery-card__tag">Sofisticado</span>
-          <h3>Diseño protagonista</h3>
-          <p>Perfecto para eventos donde la invitación debe destacar con una estética fuerte y memorable.</p>
-          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+          <h3>Diseño dorado protagonista</h3>
+          <p>
+            Una propuesta visual fuerte y memorable, pensada para eventos que necesitan destacar desde la primera mirada.
+          </p>
         </div>
       </article>
 
-      <article class="gallery-card">
-        <img src="{{ url_for('static', filename='img/gallery/diseno-06.webp') }}" alt="Diseño de tarjeta 6" class="gallery-card__image">
+      <article
+        class="gallery-card gallery-card--clickable"
+        data-lightbox-image="{{ url_for('static', filename='img/gallery/diseno-06.webp') }}"
+        data-lightbox-title="Diseño boda clásica"
+        data-lightbox-tag="Exclusivo"
+        data-lightbox-description="Un modelo de boda elegante y tradicional, con fotografía protagonista y una composición clásica para una presentación distinguida."
+      >
+        <div class="gallery-card__image-wrap">
+          <img src="{{ url_for('static', filename='img/gallery/diseno-06.webp') }}" alt="Diseño boda clásica" class="gallery-card__image">
+          <div class="gallery-card__overlay">
+            <span>Ver diseño</span>
+          </div>
+        </div>
         <div class="gallery-card__content">
           <span class="gallery-card__tag">Exclusivo</span>
-          <h3>Diseño de autor</h3>
-          <p>Un estilo pensado para transmitir personalidad, categoría y una imagen visual más exclusiva.</p>
-          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+          <h3>Diseño boda clásica</h3>
+          <p>
+            Una invitación de boda con marco elegante y fotografía central, ideal para una presentación romántica y distinguida.
+          </p>
         </div>
       </article>
     </div>
@@ -286,4 +358,31 @@
     </div>
   </div>
 </section>
+
+<div class="lightbox-modal" id="galleryLightbox" aria-hidden="true">
+  <div class="lightbox-modal__backdrop" data-lightbox-close></div>
+
+  <div class="lightbox-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+    <button type="button" class="lightbox-modal__close" data-lightbox-close aria-label="Cerrar visor">
+      ×
+    </button>
+
+    <div class="lightbox-modal__grid">
+      <div class="lightbox-modal__image-wrap">
+        <img id="lightboxImage" src="" alt="" class="lightbox-modal__image">
+      </div>
+
+      <div class="lightbox-modal__content">
+        <span class="lightbox-modal__tag" id="lightboxTag"></span>
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxDescription"></p>
+
+        <div class="lightbox-modal__actions">
+          <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Elegir este diseño</a>
+          <button type="button" class="btn btn-secondary" data-lightbox-close>Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
