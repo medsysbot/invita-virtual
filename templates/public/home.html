@@ -317,26 +317,50 @@
   <div class="container">
     <div class="section-heading section-heading--center">
       <span class="section-badge">Opiniones</span>
-      <h2>Una presentación más sólida para vender mejor</h2>
+      <h2>Lo que podrían decir tus clientes</h2>
       <p>
-        El objetivo es que la marca ya se perciba más profesional desde la home.
+        Un espacio preparado para mostrar referencias reales, generar confianza y reforzar el valor del servicio.
       </p>
     </div>
 
     <div class="testimonial-grid">
       <article class="testimonial-card">
-        <p>“La presentación transmite más categoría y ayuda a que el cliente valore mejor el servicio.”</p>
-        <strong>Cliente demo</strong>
+        <div class="testimonial-card__top">
+          <img src="{{ url_for('static', filename='img/avatar-01.svg') }}" alt="Avatar de Camila" class="testimonial-avatar">
+          <div class="testimonial-meta">
+            <strong>Camila R.</strong>
+            <span>Casamiento</span>
+          </div>
+        </div>
+        <p>
+          “La presentación se ve elegante y transmite mucho más valor desde la primera visita.”
+        </p>
       </article>
 
       <article class="testimonial-card">
-        <p>“Con una galería visual, la propuesta ya se siente mucho más completa y comercial.”</p>
-        <strong>Cliente demo</strong>
+        <div class="testimonial-card__top">
+          <img src="{{ url_for('static', filename='img/avatar-02.svg') }}" alt="Avatar de Mariano" class="testimonial-avatar">
+          <div class="testimonial-meta">
+            <strong>Mariano P.</strong>
+            <span>15 años</span>
+          </div>
+        </div>
+        <p>
+          “La galería ayuda muchísimo a visualizar estilos y a elegir un diseño con más claridad.”
+        </p>
       </article>
 
       <article class="testimonial-card">
-        <p>“La home ahora sí acompaña la idea de un producto visual, prolijo y profesional.”</p>
-        <strong>Cliente demo</strong>
+        <div class="testimonial-card__top">
+          <img src="{{ url_for('static', filename='img/avatar-03.svg') }}" alt="Avatar de Lucía" class="testimonial-avatar">
+          <div class="testimonial-meta">
+            <strong>Lucía S.</strong>
+            <span>Evento social</span>
+          </div>
+        </div>
+        <p>
+          “Se siente una web más profesional y mucho más cercana a un producto real.”
+        </p>
       </article>
     </div>
   </div>
