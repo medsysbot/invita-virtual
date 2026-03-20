@@ -106,6 +106,80 @@
   </div>
 </section>
 
+<section class="gallery-showcase">
+  <div class="container">
+    <div class="section-heading section-heading--center">
+      <span class="section-badge">Galería</span>
+      <h2>Explora nuestras tarjetas</h2>
+      <p>
+        Una selección de estilos visuales para inspirarte y ayudarte a elegir la propuesta ideal para tu evento.
+      </p>
+    </div>
+
+    <div class="gallery-showcase__grid">
+      <article class="gallery-card">
+        <img src="{{ url_for('static', filename='img/gallery/diseno-01.webp') }}" alt="Diseño de tarjeta 1" class="gallery-card__image">
+        <div class="gallery-card__content">
+          <span class="gallery-card__tag">Estilo premium</span>
+          <h3>Diseño elegante</h3>
+          <p>Una propuesta refinada para eventos que buscan una presentación visual distinguida.</p>
+          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img src="{{ url_for('static', filename='img/gallery/diseno-02.webp') }}" alt="Diseño de tarjeta 2" class="gallery-card__image">
+        <div class="gallery-card__content">
+          <span class="gallery-card__tag">Brillante</span>
+          <h3>Diseño dorado</h3>
+          <p>Ideal para quienes buscan una tarjeta con presencia, brillo y una apariencia impactante.</p>
+          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img src="{{ url_for('static', filename='img/gallery/diseno-03.webp') }}" alt="Diseño de tarjeta 3" class="gallery-card__image">
+        <div class="gallery-card__content">
+          <span class="gallery-card__tag">Romántico</span>
+          <h3>Diseño delicado</h3>
+          <p>Una composición visual suave y elegante, pensada para transmitir emoción y estilo.</p>
+          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img src="{{ url_for('static', filename='img/gallery/diseno-04.webp') }}" alt="Diseño de tarjeta 4" class="gallery-card__image">
+        <div class="gallery-card__content">
+          <span class="gallery-card__tag">Moderno</span>
+          <h3>Diseño actual</h3>
+          <p>Una opción limpia y moderna para clientes que prefieren una imagen fresca y actual.</p>
+          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img src="{{ url_for('static', filename='img/gallery/diseno-05.webp') }}" alt="Diseño de tarjeta 5" class="gallery-card__image">
+        <div class="gallery-card__content">
+          <span class="gallery-card__tag">Sofisticado</span>
+          <h3>Diseño protagonista</h3>
+          <p>Perfecto para eventos donde la invitación debe destacar con una estética fuerte y memorable.</p>
+          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+        </div>
+      </article>
+
+      <article class="gallery-card">
+        <img src="{{ url_for('static', filename='img/gallery/diseno-06.webp') }}" alt="Diseño de tarjeta 6" class="gallery-card__image">
+        <div class="gallery-card__content">
+          <span class="gallery-card__tag">Exclusivo</span>
+          <h3>Diseño de autor</h3>
+          <p>Un estilo pensado para transmitir personalidad, categoría y una imagen visual más exclusiva.</p>
+          <a href="{{ url_for('auth.login') }}" class="text-link">Elegir este diseño</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="home-benefits">
   <div class="container">
     <div class="section-heading section-heading--center">
@@ -184,12 +258,12 @@
       </article>
 
       <article class="testimonial-card">
-        <p>“Con dos modelos bien mostrados, la propuesta ya se siente mucho más comercial.”</p>
+        <p>“Con una galería visual, la propuesta ya se siente mucho más completa y comercial.”</p>
         <strong>Cliente demo</strong>
       </article>
 
       <article class="testimonial-card">
-        <p>“La home ahora sí acompaña la idea de un producto visual y profesional.”</p>
+        <p>“La home ahora sí acompaña la idea de un producto visual, prolijo y profesional.”</p>
         <strong>Cliente demo</strong>
       </article>
     </div>
