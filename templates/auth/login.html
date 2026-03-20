@@ -1,44 +1,81 @@
 {% extends "base.html" %}
 {% block title %}Ingresar{% endblock %}
+
 {% block content %}
 <section class="auth-page">
-  <div class="auth-card auth-visual">
-    <div class="auth-visual-media">
-      <img src="{{ url_for('static', filename='img/auth-login.svg') }}" alt="Acceso de clientes a invitaciones digitales">
-    </div>
-    <div class="auth-card-body">
-      <span class="section-eyebrow">Acceso</span>
-      <h1>Bienvenido de nuevo</h1>
-      <p>Accede a tu cuenta para gestionar tus invitaciones, revisar pedidos y continuar tu evento. Si tu usuario tiene rol administrativo, el sistema te enviará automáticamente al panel de administración.</p>
-      <form method="post" action="{{ url_for('auth.login') }}" class="auth-form" data-auth-validate="login" novalidate>
+  <div class="container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <span class="section-badge">Acceso</span>
+        <h1>Bienvenido de nuevo</h1>
+        <p>
+          Accede a tu cuenta para gestionar tus invitaciones, revisar pedidos y continuar tu evento.
+          Si tu usuario tiene rol administrativo, el sistema te enviará automáticamente al panel de administración.
+        </p>
+      </div>
+
+      <form method="post" class="auth-form" novalidate>
         <div class="form-group">
           <label for="email">Correo electrónico</label>
-          <input type="email" id="email" name="email" placeholder="tuemail@dominio.com" autocomplete="email" required>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            value="{{ request.form.get('email', '') }}"
+            placeholder="tuemail@dominio.com"
+            autocomplete="email"
+            required
+          >
         </div>
-        <div class="form-group form-group-password">
+
+        <div class="form-group">
           <label for="password">Contraseña</label>
-          <div class="password-wrap">
-            <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" required minlength="8">
-            <button class="password-toggle" type="button" data-toggle-password="#password">Ver</button>
+          <div class="password-field">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Ingresa tu contraseña"
+              autocomplete="current-password"
+              required
+            >
+            <button
+              type="button"
+              class="password-toggle"
+              data-toggle-password
+              data-password-target="password"
+              aria-label="Mostrar u ocultar contraseña"
+            >
+              Ver
+            </button>
           </div>
         </div>
-        <div class="form-row between">
+
+        <div class="auth-inline-row">
           <label class="checkbox-inline">
-            <input type="checkbox" name="remember_me" value="1">
+            <input
+              type="checkbox"
+              name="remember_me"
+              value="1"
+              {% if request.form.get('remember_me') == '1' %}checked{% endif %}
+            >
             <span>Recordarme</span>
           </label>
-          <a href="{{ url_for('auth.forgot_password') }}" class="text-link">Olvidé mi contraseña</a>
+
+          <a href="{{ url_for('auth.forgot_password') }}" class="auth-inline-link">
+            Olvidé mi contraseña
+          </a>
         </div>
-        <div class="form-inline-error" data-form-error></div>
-        <button type="submit" class="button button-full">Ingresar</button>
+
+        <button type="submit" class="btn btn-primary btn-block auth-submit">
+          Ingresar
+        </button>
+
+        <a href="{{ url_for('auth.register') }}" class="btn btn-secondary btn-block auth-secondary-action">
+          Crear cuenta
+        </a>
       </form>
-      <div class="auth-links-stack">
-        <a href="{{ url_for('auth.register') }}" class="button-outline button-full">Crear cuenta</a>
-      </div>
     </div>
   </div>
 </section>
-{% endblock %}
-{% block page_scripts %}
-<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 {% endblock %}
