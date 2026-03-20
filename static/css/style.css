@@ -1373,3 +1373,138 @@ td {
     width: 100%;
   }
 }
+  /* ===== Ajuste marca de agua del hero ===== */
+.hero-home--simple {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-home__single {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-watermark {
+  position: absolute !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: -40px !important;
+  transform: translateX(-50%) !important;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.10;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero-watermark__image {
+  width: min(42vw, 520px) !important;
+  max-width: 520px !important;
+  height: auto;
+  object-fit: contain;
+  filter: none;
+}
+
+/* ===== Botones reales de login / registro ===== */
+.auth-form button[type="submit"],
+.auth-form input[type="submit"],
+.auth-form .auth-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 54px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #221044 0%, #0e1c4a 100%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 18px 36px rgba(22, 16, 59, 0.18);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-form button[type="submit"]:hover,
+.auth-form input[type="submit"]:hover,
+.auth-form .auth-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 22px 42px rgba(22, 16, 59, 0.22);
+}
+
+.auth-form button[type="submit"]:focus-visible,
+.auth-form input[type="submit"]:focus-visible,
+.auth-form .auth-submit:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(109, 74, 230, 0.14),
+    0 22px 42px rgba(22, 16, 59, 0.22);
+}
+
+/* ===== Botón "Ver" de contraseña ===== */
+.auth-form .form-group button:not([type="submit"]),
+.auth-form .form-group input[type="button"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(77, 50, 156, 0.14);
+  background: #ffffff;
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-form .form-group button:not([type="submit"]):hover,
+.auth-form .form-group input[type="button"]:hover {
+  border-color: rgba(109, 74, 230, 0.28);
+  color: var(--primary);
+}
+
+/* ===== Links inferiores de acceso ===== */
+.auth-footer a,
+.auth-card a.auth-link,
+.auth-card .auth-bottom-link {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-footer a:hover,
+.auth-card a.auth-link:hover,
+.auth-card .auth-bottom-link:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 1100px) {
+  .hero-watermark {
+    bottom: -20px !important;
+    opacity: 0.09;
+  }
+
+  .hero-watermark__image {
+    width: min(50vw, 420px) !important;
+    max-width: 420px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-watermark {
+    left: 50% !important;
+    right: auto !important;
+    bottom: -10px !important;
+    transform: translateX(-50%) !important;
+    opacity: 0.08;
+  }
+
+  .hero-watermark__image {
+    width: min(62vw, 300px) !important;
+    max-width: 300px !important;
+  }
+}
