@@ -7,9 +7,9 @@
       <img src="{{ url_for('static', filename='img/auth-login.svg') }}" alt="Acceso de clientes a invitaciones digitales">
     </div>
     <div class="auth-card-body">
-      <span class="section-eyebrow">Acceso clientes</span>
+      <span class="section-eyebrow">Acceso</span>
       <h1>Bienvenido de nuevo</h1>
-      <p>Accede a tu cuenta para gestionar tus invitaciones, revisar pedidos y continuar tu evento.</p>
+      <p>Accede a tu cuenta para gestionar tus invitaciones, revisar pedidos y continuar tu evento. Si tu usuario tiene rol administrativo, el sistema te enviará automáticamente al panel de administración.</p>
       <form method="post" action="{{ url_for('auth.login') }}" class="auth-form" data-auth-validate="login" novalidate>
         <div class="form-group">
           <label for="email">Correo electrónico</label>
@@ -34,7 +34,6 @@
       </form>
       <div class="auth-links-stack">
         <a href="{{ url_for('auth.register') }}" class="button-outline button-full">Crear cuenta</a>
-        <a href="{{ url_for('auth.admin_login') }}" class="text-link text-link-center">Ingreso administrativo</a>
       </div>
     </div>
   </div>

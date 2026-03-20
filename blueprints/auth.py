@@ -39,9 +39,6 @@ def login():
         if not user.is_active:
             flash("Tu cuenta está inactiva. Contacta al administrador.", "error")
             return render_template("auth/login.html")
-        if user.role != ROLE_CLIENT:
-            flash("Esta pantalla es solo para clientes.", "error")
-            return render_template("auth/login.html")
 
         login_user(user, remember=remember)
         user.last_login = datetime.utcnow()
@@ -99,35 +96,6 @@ def register():
         return redirect(url_for("auth.login"))
 
     return render_template("auth/register.html")
-
-
-@bp.route("/admin-login", methods=["GET", "POST"])
-def admin_login():
-    if current_user.is_authenticated:
-        return _redirect_after_login(current_user)
-
-    if request.method == "POST":
-        email = _normalize_email(request.form.get("email"))
-        password = request.form.get("password", "")
-
-        user = User.query.filter_by(email=email).first()
-        if not user or not user.check_password(password):
-            flash("Credenciales inválidas.", "error")
-            return render_template("auth/login_admin.html")
-        if not user.is_active:
-            flash("La cuenta administrativa está inactiva.", "error")
-            return render_template("auth/login_admin.html")
-        if user.role != ROLE_ADMIN:
-            flash("No tienes permisos de administración.", "error")
-            return render_template("auth/login_admin.html")
-
-        login_user(user, remember=False)
-        user.last_login = datetime.utcnow()
-        db.session.commit()
-        flash("Acceso administrativo concedido.", "success")
-        return redirect(url_for("admin.dashboard"))
-
-    return render_template("auth/login_admin.html")
 
 
 @bp.route("/forgot-password", methods=["GET", "POST"])

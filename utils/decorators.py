@@ -13,7 +13,7 @@ def admin_required(view):
     @wraps(view)
     def wrapped(*args, **kwargs):
         if not current_user.is_authenticated:
-            return redirect(url_for("auth.admin_login"))
+            return redirect(url_for("auth.login"))
         if current_user.role != ROLE_ADMIN:
             flash("Acceso restringido.", "error")
             return redirect(url_for("public.home"))

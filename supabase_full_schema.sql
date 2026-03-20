@@ -191,6 +191,7 @@ insert into public.tip_category (name, slug, parent_id, position, is_active)
 select 'Tercera edad', 'tercera-edad', (select id from public.tip_category where slug = 'cumpleanos'), 4, true
 where not exists (select 1 from public.tip_category where slug = 'tercera-edad');
 
+-- Después de registrarte desde /auth/register, ejecuta también el archivo supabase_promote_admin.sql
 update public."user"
 set role = 'admin', is_active = true
 where email = 'tuemail@dominio.com';

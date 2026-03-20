@@ -33,22 +33,26 @@ flask --app app run --debug
 5. Primer arranque: crea el esquema automáticamente (SQLAlchemy).
 
 ## Alta de Admin (sin terminal)
-- Regístrese desde la web y luego, en Supabase SQL Editor:
+1. Regístrese desde la web con `/auth/register`.
+2. Luego, en Supabase SQL Editor, ejecute:
   ```sql
-  update "user" set role = 'admin' where email = 'SU_EMAIL';
+  update public."user"
+  set role = 'admin', is_active = true
+  where email = 'SU_EMAIL';
   ```
+3. Ingrese por `/auth/login`. Si el rol es `admin`, el sistema redirige automáticamente a `/admin`.
 
 
 ## Módulo Auth final
-- Login cliente: /auth/login
+- Login único: /auth/login
 - Registro cliente: /auth/register
-- Login admin: /auth/admin-login
 - Recuperación: /auth/forgot-password
 - Reset: /auth/reset-password/<token>
-- SQL único Supabase: `supabase_auth.sql`
+- Promoción admin por SQL: `supabase_promote_admin.sql`
+- SQL base Supabase: `supabase_full_schema.sql`
 
 
 ## Módulos funcionales cerrados
-- Auth completo: login cliente, registro, login admin, recuperar y resetear contraseña.
+- Auth completo: login único por rol, registro cliente, recuperar y resetear contraseña.
 - Cliente: crear invitación, vista previa, checkout, pedido y pago demo.
 - Admin: usuarios, crear admin, detalle de usuario, pedidos, invitaciones y solicitudes.
