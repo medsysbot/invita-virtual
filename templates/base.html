@@ -4,44 +4,57 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Invita Virtual{% endblock %}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<header class="topbar">
-  <div class="container topbar-inner">
-    <a class="brand" href="{{ url_for('public.home') }}">Invita Virtual</a>
-    <nav>
-      <a href="{{ url_for('public.home') }}">Inicio</a>
-      <a href="{{ url_for('public.tips_index') }}">Tips</a>
-      {% if current_user.is_authenticated and current_user.role == 'client' %}
-        <a href="{{ url_for('client.dashboard') }}">Mi panel</a>
-      {% endif %}
-      {% if current_user.is_authenticated and current_user.role == 'admin' %}
-        <a href="{{ url_for('admin.dashboard') }}">Admin</a>
-      {% endif %}
-      {% if current_user.is_authenticated %}
-        <a href="{{ url_for('auth.logout') }}">Salir</a>
-      {% else %}
-        <a href="{{ url_for('auth.login') }}">Ingresar</a>
-        <a href="{{ url_for('auth.register') }}">Registrarse</a>
-      {% endif %}
-    </nav>
-  </div>
-</header>
-<main class="container page-shell">
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      <ul class="flashes">
-        {% for category, message in messages %}
-          <li class="{{ category }}">{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-  {% block content %}{% endblock %}
-</main>
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
-{% block page_scripts %}{% endblock %}
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="{{ url_for('public.home') }}" class="site-brand">
+        Invita Virtual
+      </a>
+
+      <nav class="site-nav">
+        <a href="{{ url_for('public.home') }}">Inicio</a>
+        <a href="{{ url_for('public.tips_index') }}">Tips</a>
+
+        {% if current_user.is_authenticated %}
+          {% if current_user.role == 'admin' %}
+            <a href="{{ url_for('admin.dashboard') }}">Panel admin</a>
+          {% else %}
+            <a href="{{ url_for('client.dashboard') }}">Mi panel</a>
+          {% endif %}
+          <a href="{{ url_for('auth.logout') }}" class="nav-pill nav-pill--dark">Salir</a>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}">Ingresar</a>
+          <a href="{{ url_for('auth.register') }}" class="nav-pill">Registrarse</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-stack">
+            {% for category, message in messages %}
+              <div class="flash-message flash-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
