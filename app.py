@@ -31,21 +31,20 @@ def create_app():
     login_manager.session_protection = "strong"
 
     with app.app_context():
-        db.create_all()
+        try:
+            db.create_all()
+            app.logger.info("Base de datos inicializada correctamente")
+        except Exception as exc:
+            app.logger.exception("No se pudo inicializar la base de datos: %s", exc)
 
     app.register_blueprint(public_bp.bp)
     app.register_blueprint(auth_bp.bp)
     app.register_blueprint(client_bp.bp)
     app.register_blueprint(admin_bp.bp)
 
-    @app.errorhandler(404)
-    def not_found(error):
-        return render_template("404.html"), 404
-
-    @app.errorhandler(500)
-    def server_error(error):
-        app.logger.exception("Error interno del servidor: %s", error)
-        return render_template("500.html"), 500
+    @app.route("/health")
+    def health():
+        return "ok", 200
 
     return app
 
