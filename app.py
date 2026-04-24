@@ -1,6 +1,6 @@
 import logging
 import sys
-from flask import Flask
+from flask import Flask, render_template
 from config import Config
 from extensions import db, login_manager
 from blueprints import auth as auth_bp
