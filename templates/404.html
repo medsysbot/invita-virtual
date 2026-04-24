@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Página no encontrada{% endblock %}
+
+{% block content %}
+<section class="auth-page">
+  <div class="container">
+    <div class="auth-card center">
+      <span class="section-badge">Error 404</span>
+      <div class="auth-header">
+        <h1>Página no encontrada</h1>
+        <p>
+          La página que intentas abrir no existe o fue movida.
+        </p>
+      </div>
+
+      <a href="{{ url_for('public.home') }}" class="btn btn-primary btn-block">
+        Volver al inicio
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}
