@@ -1,12 +1,15 @@
 import logging
 import sys
-from flask import Flask
+
+from flask import Flask, render_template
+
 from config import Config
 from extensions import db, login_manager
 from blueprints import auth as auth_bp
 from blueprints import public as public_bp
 from blueprints import client as client_bp
 from blueprints import admin as admin_bp
+from models import *
 
 
 def create_app():
@@ -31,20 +34,21 @@ def create_app():
     login_manager.session_protection = "strong"
 
     with app.app_context():
-        try:
-            db.create_all()
-            app.logger.info("Base de datos inicializada correctamente")
-        except Exception as exc:
-            app.logger.exception("No se pudo inicializar la base de datos: %s", exc)
+        db.create_all()
 
     app.register_blueprint(public_bp.bp)
     app.register_blueprint(auth_bp.bp)
     app.register_blueprint(client_bp.bp)
     app.register_blueprint(admin_bp.bp)
 
-    @app.route("/health")
-    def health():
-        return "ok", 200
+    @app.errorhandler(404)
+    def not_found(error):
+        return render_template("404.html"), 404
+
+    @app.errorhandler(500)
+    def server_error(error):
+        app.logger.exception("Error interno del servidor: %s", error)
+        return render_template("500.html"), 500
 
     return app
 
